@@ -11,10 +11,21 @@ struct ContentView: View {
     @State private var selectedIndex = 0
     @State private var isAuthenticated = false
     
+//    init() {
+//            // Customize the appearance of the tab bar
+//            let tabBarAppearance = UITabBarAppearance()
+//            tabBarAppearance.configureWithOpaqueBackground()
+//            if let backgroundImage = UIImage(named: "background") {
+//                tabBarAppearance.backgroundImage = backgroundImage
+//            }
+////            tabBarAppearance.backgroundColor = UIColor.clear // Set the background color to clear
+//            
+//            UITabBar.appearance().standardAppearance = tabBarAppearance
+//        }
     
     var body: some View {
-//        NavigationView {
-//            if !isAuthenticated {
+        NavigationView {
+            if !isAuthenticated {
                 TabView(selection: $selectedIndex) {
                     HomeView()
                         .onTapGesture {
@@ -48,6 +59,8 @@ struct ContentView: View {
                     // Add more views and tab items as needed
 
                 }
+//                .background(Color.clear)
+//                .background(.black)
 //                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
 //                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
 //                .zIndex(1)
@@ -65,10 +78,10 @@ struct ContentView: View {
 //                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
 //                .navigationBarTitle("Top Tab Bar Example", displayMode: .inline)
 //                .foregroundColor(.black)
-//            } else {
-//                LoginView(isAuthenticated: $isAuthenticated)
-//            }
-//        }
+            } else {
+                LoginView(isAuthenticated: $isAuthenticated)
+            }
+        }
         
     }
 }

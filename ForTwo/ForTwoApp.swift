@@ -10,6 +10,24 @@ import SwiftUI
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        // Customize the appearance of the tab bar
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
+        if let backgroundImage = UIImage(named: "background") {
+            tabBarAppearance.backgroundImage = backgroundImage
+        }
+        
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        
+        // Customize the appearance of the navigation bar
+        let appearance = UINavigationBarAppearance()
+        if let backgroundImage = UIImage(named: "background") {
+            appearance.backgroundImage = backgroundImage
+        }
+        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
         FirebaseApp.configure()
         return true
@@ -23,8 +41,8 @@ struct ForTwoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            QuestionsView()
-//            ContentView()
+//            QuestionsView()
+            ContentView()
         }
     }
 }

@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct QuestionsView: View {
+//    init() {
+//        // Customize the appearance of the navigation bar
+//        let appearance = UINavigationBarAppearance()
+//        if let backgroundImage = UIImage(named: "background") {
+//            appearance.backgroundImage = backgroundImage
+//        }
+//        
+//        UINavigationBar.appearance().standardAppearance = appearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+//    }
+    
     var body: some View {
         NavigationView {
             ZStack {
                 Image("background")
                     .resizable()
         //                .scaledToFill()
-//                    .ignoresSafeArea()
+                    .ignoresSafeArea()
                 VStack{
                     ScrollView {
                         LazyVStack {
@@ -28,24 +39,10 @@ struct QuestionsView: View {
                         }
                     }
                 }
-//                .background(
-//                    Image("background")
-//                        .resizable()
-//                        .ignoresSafeArea())
-    //            .scrollBounceBehavi
-    //            .padding(.top, 20)
-    //            .navigationBarTitle("Scroll View Example", displayMode: .inline)
             }
             .navigationTitle("List")
             .navigationBarTitleDisplayMode(.inline)
-//            .background(Color.green)
-//            .navi
         }
-//        .background(Color.green)
-//        .navigationTitle("List")
-//        .navigationBarTitleDisplayMode(.inline)
-//        .navigationTitle("List")
-//        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
