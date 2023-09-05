@@ -23,7 +23,8 @@ struct ForTwoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            QuestionsView()
+//            ContentView()
         }
     }
 }
