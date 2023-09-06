@@ -26,8 +26,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             appearance.backgroundImage = backgroundImage
         }
         
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.red]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.blue]
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+
         
         FirebaseApp.configure()
         return true

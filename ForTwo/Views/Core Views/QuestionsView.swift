@@ -40,8 +40,15 @@ struct QuestionsView: View {
                     }
                 }
             }
-            .navigationTitle("List")
+//            .navigationTitle(Text("List")
+//                                .font(Font.custom("ZapfinoExtraLT-One", size: 32)))
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("List")
+                        .font(Font.custom("ZapfinoExtraLT-One", size: 44))
+                }
+            }
         }
     }
 }
