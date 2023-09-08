@@ -74,9 +74,9 @@ struct HomeView: View {
 //                    HStack {
 //                        Spacer()
                         GeometryReader { geometry in
-                            let safeArea = geometry.safeAreaInsets
-                            let safeAreaWidth = geometry.size.width - safeArea.leading - safeArea.trailing
-                            let safeAreaHeight = geometry.size.height - safeArea.top - safeArea.bottom
+//                            let safeArea = geometry.safeAreaInsets
+//                            let safeAreaWidth = geometry.size.width - safeArea.leading - safeArea.trailing
+//                            let safeAreaHeight = geometry.size.height - safeArea.top - safeArea.bottom
                             Button(action: {}) {
                                 Spacer()
                                 Image("letter icon")
@@ -161,16 +161,16 @@ struct HomeView: View {
                             .frame(width: geometry.size.width, height: geometry.size.height / 1.125)
                             .cornerRadius(20)
 //                            .border()
-                        if (true) {  //if did not get new question
+                        if (false) {  //if did not get new question
                             Text("Nice to see you!\n\nA question is waiting for you  📪")
                                 .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                 .font(Font.custom("HermeneusOne-Regular", size: 20))
                                 .multilineTextAlignment(.center)
                          }
                         else {
-                            Text("Nice to see you!\n\nNew question available in...")
+                            Text("Nice to see you!\n\nNew question coming soon  ⏳")
                                 .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
-                                .font(Font.custom("HermeneusOne-Regular", size: 20))
+                                .font(Font.custom("HermeneusOne-Regular", size: 19))
                                 .multilineTextAlignment(.center)
                         }
                     }

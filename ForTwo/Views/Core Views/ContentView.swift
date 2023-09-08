@@ -25,7 +25,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            if !isAuthenticated {
+            if isAuthenticated {
                 TabView(selection: $selectedIndex) {
                     HomeView()
                         .onTapGesture {
@@ -80,6 +80,7 @@ struct ContentView: View {
 //                .foregroundColor(.black)
             } else {
                 LoginView(isAuthenticated: $isAuthenticated)
+//                RegistrationView(isAuthenticated: $isAuthenticated)
             }
         }
         

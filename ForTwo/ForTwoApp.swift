@@ -46,6 +46,7 @@ struct ForTwoApp: App {
         WindowGroup {
 //            QuestionsView()
             ContentView()
+//            LoginView()
         }
     }
 }
