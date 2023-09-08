@@ -37,6 +37,7 @@
 		19CA3A792AA026A700224212 /* QuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CA3A782AA026A700224212 /* QuestionsView.swift */; };
 		19CA3A7B2AA0270F00224212 /* MemoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CA3A7A2AA0270F00224212 /* MemoriesView.swift */; };
 		19CA3A7D2AA0271F00224212 /* CoupleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CA3A7C2AA0271F00224212 /* CoupleView.swift */; };
+		19D008EE2AAA844700B89E02 /* LetterWaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D008ED2AAA844700B89E02 /* LetterWaitingView.swift */; };
 		DF80EF4D7B474C4AE69A2C94 /* Pods_ForTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D14BF70102414C3CD28E0E /* Pods_ForTwo.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		19CA3A782AA026A700224212 /* QuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsView.swift; sourceTree = "<group>"; };
 		19CA3A7A2AA0270F00224212 /* MemoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesView.swift; sourceTree = "<group>"; };
 		19CA3A7C2AA0271F00224212 /* CoupleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleView.swift; sourceTree = "<group>"; };
+		19D008ED2AAA844700B89E02 /* LetterWaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterWaitingView.swift; sourceTree = "<group>"; };
 		607A0E6DD4CCBD282F10DA7C /* Pods-ForTwo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForTwo.release.xcconfig"; path = "Target Support Files/Pods-ForTwo/Pods-ForTwo.release.xcconfig"; sourceTree = "<group>"; };
 		8BD1289CE1F9AE8EFE081610 /* Pods-ForTwo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForTwo.debug.xcconfig"; path = "Target Support Files/Pods-ForTwo/Pods-ForTwo.debug.xcconfig"; sourceTree = "<group>"; };
 		F0D14BF70102414C3CD28E0E /* Pods_ForTwo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForTwo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				19019FE12AA6A5B600B2FEC1 /* QuestionRowView.swift */,
+				19D008ED2AAA844700B89E02 /* LetterWaitingView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				19BD91B62AA2E192008B5F4E /* LoginViewModel.swift in Sources */,
 				19BD91A92AA29D49008B5F4E /* RegistrationView.swift in Sources */,
 				19BD91AE2AA2DE32008B5F4E /* DatabaseManager.swift in Sources */,
+				19D008EE2AAA844700B89E02 /* LetterWaitingView.swift in Sources */,
 				19BD91B32AA2DEFA008B5F4E /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
