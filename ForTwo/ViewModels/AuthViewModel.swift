@@ -15,7 +15,7 @@ class AuthViewModel: ObservableObject {
     init() {
         self.userSession = Auth.auth().currentUser
         
-        print("DEBUG: User session is \(self.userSession)")
+        print("DEBUG: User session is \(self.userSession?.uid)")
     }
     
     func register(userEmail: String, userPassword: String) {
@@ -43,7 +43,16 @@ class AuthViewModel: ObservableObject {
     }
     
     func login(userEmail: String, userPassword: String) {
-        print("DEBUG: Login \(userEmail)")
+//        print("DEBUG: Login \(userEmail)")
+        Auth.auth().signIn(withEmail: userEmail, password: userPassword) { result, error in
+            if let error = error {
+                print("\(error.localizedDescription)")
+                return
+            }
+            guard let user = result?.user else { return }
+            self.userSession = user
+            print("User logged in")
+        }
     }
     
     func signOut() {

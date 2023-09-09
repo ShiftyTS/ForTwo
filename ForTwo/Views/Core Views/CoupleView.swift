@@ -10,10 +10,10 @@ import SwiftUI
 struct CoupleView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
-    func copyToClipboard(_ text: String) {
-            let pasteboard = UIPasteboard.general
-            pasteboard.string = text
-    }
+//    func copyToClipboard(_ text: String) {
+//            let pasteboard = UIPasteboard.general
+//            pasteboard.string = text
+//    }
     
     var body: some View {
         NavigationView {
@@ -79,36 +79,36 @@ struct CoupleView: View {
 //                                    .frame(width: geometry.size.width, height: geometry.size.height / 3)
 //                                    .cornerRadius(20)
 ////                                    .border(.red)
-////                                VStack {
-////                                    Text("Couple code:")
+//                                VStack {
+//                                    Text("Couple code:")
+//                                        .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+//                                        .font(Font.custom("HermeneusOne-Regular", size: 20))
+//                                        .multilineTextAlignment(.center)
+//                                        .padding(5)
+////                                    Text("123456789abcdxe")
 ////                                        .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
 ////                                        .font(Font.custom("HermeneusOne-Regular", size: 20))
 ////                                        .multilineTextAlignment(.center)
 ////                                        .padding(5)
-//////                                    Text("123456789abcdxe")
-//////                                        .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
-//////                                        .font(Font.custom("HermeneusOne-Regular", size: 20))
-//////                                        .multilineTextAlignment(.center)
-//////                                        .padding(5)
-////////                                        .underline()
-//////                                        .underline(true, color: Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
-//////                                        .baselineOffset(5.0)
-//////                                        .onTapGesture {
-//////                                            copyToClipboard("123456789abcdxe")
-//////                                        }
-////                                    Button(action: {}) {
-////                                        Text("123456789abcdxe")
-////                                            .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
-////                                            .font(Font.custom("HermeneusOne-Regular", size: 20))
-////                                            .multilineTextAlignment(.center)
-////                                            .padding(5)
-////                                        //                                        .underline()
-////                                            .underline(true, color: Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
-////                                            .baselineOffset(5.0)
-////                                            .onTapGesture {
-////                                                copyToClipboard("123456789abcdxe")
-////                                            }
-////                                    }
+//////                                        .underline()
+////                                        .underline(true, color: Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+////                                        .baselineOffset(5.0)
+////                                        .onTapGesture {
+////                                            copyToClipboard("123456789abcdxe")
+////                                        }
+//                                    Button(action: {}) {
+//                                        Text("123456789abcdxe")
+//                                            .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+//                                            .font(Font.custom("HermeneusOne-Regular", size: 20))
+//                                            .multilineTextAlignment(.center)
+//                                            .padding(5)
+//                                        //                                        .underline()
+//                                            .underline(true, color: Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+//                                            .baselineOffset(5.0)
+//                                            .onTapGesture {
+//                                                copyToClipboard("123456789abcdxe")
+//                                            }
+//                                    }
 //////                                    Text("Test")
 ////
 ////
