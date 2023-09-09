@@ -13,11 +13,12 @@ import SwiftUI
 //}
 struct RegistrationView: View {
     @Binding var isAuthenticated: Bool   //parameter
-    @State private var usernameEmail = ""
-    @State private var nickname = ""
+    @State private var email = ""
+//    @State private var nickname = ""
     @State private var password = ""
     @State private var isEditing = false
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: AuthViewModel
     
     private func hideKeyboard() {
     // Resign first responder to hide the keyboard
@@ -55,7 +56,7 @@ struct RegistrationView: View {
                     
                     Spacer()
                     VStack(alignment: .leading, spacing: 15) {
-                        TextField("Email", text: self.$usernameEmail)
+                        TextField("Email", text: self.$email)
                             .padding()
                             .onTapGesture {
                                 // Set isEditing to true when the TextField is tapped
@@ -69,20 +70,20 @@ struct RegistrationView: View {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color.gray, lineWidth: 0.5)
                         )
-                        TextField("Nickname (can be changed later)", text: self.$nickname)
-                            .padding()
-                            .onTapGesture {
-                              // Set isEditing to true when the TextField is tapped
-                              isEditing = true
-                            }
-                            .background(Color(UIColor.secondarySystemBackground))
-                            .cornerRadius(20.0)
-                            .autocorrectionDisabled()
-                            .textInputAutocapitalization(.none)
-                            .overlay(
-                              RoundedRectangle(cornerRadius: 10)
-                                  .stroke(Color.gray, lineWidth: 0.5)
-                        )
+//                        TextField("Nickname (can be changed later)", text: self.$nickname)
+//                            .padding()
+//                            .onTapGesture {
+//                              // Set isEditing to true when the TextField is tapped
+//                              isEditing = true
+//                            }
+//                            .background(Color(UIColor.secondarySystemBackground))
+//                            .cornerRadius(20.0)
+//                            .autocorrectionDisabled()
+//                            .textInputAutocapitalization(.none)
+//                            .overlay(
+//                              RoundedRectangle(cornerRadius: 10)
+//                                  .stroke(Color.gray, lineWidth: 0.5)
+//                        )
                         SecureField("Password", text: self.$password)
                             .padding()
                             .onTapGesture {
@@ -99,7 +100,10 @@ struct RegistrationView: View {
                         )
                     }.padding([.leading, .trailing], 27.5)
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        viewModel.register(userEmail: email,
+                                           userPassword: password)
+                    }) {
                       Text("Sign Up")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -111,8 +115,31 @@ struct RegistrationView: View {
                     .onTapGesture {
                         hideKeyboard()
                     }
-                    .opacity((usernameEmail.isEmpty || password.isEmpty || nickname.isEmpty) ? 0.5 : 1.0)
-                    .disabled(usernameEmail.isEmpty || password.isEmpty || nickname.isEmpty)
+                    .opacity((email.isEmpty || password.isEmpty) ? 0.5 : 1.0)
+                    .disabled(email.isEmpty || password.isEmpty)
+                    
+                    VStack {
+                        HStack {
+                            Text("⸻")
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .font(Font.custom("HermeneusOne-Regular", size: 18))
+                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                            Text("OR")
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .font(Font.custom("HermeneusOne-Regular", size: 14))
+                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                            Text("⸻")
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .font(Font.custom("HermeneusOne-Regular", size: 18))
+                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                        }
+                        Button(action: {}) {
+                          Image("googleicon")
+                                .resizable()
+                                .scaledToFit()
+                                .scaleEffect(0.75)
+                        }
+                    }
                     
                     Spacer()
                     
@@ -136,11 +163,6 @@ struct RegistrationView: View {
         
 //        .aspectRatio(contentMode: .fill)
 //        .ignoresSafeArea()
-    }
-
-private func login() {
-        // Implement your login logic here
-        print("Logging in")
     }
 }
 

@@ -7,16 +7,17 @@
 //
 
 import SwiftUI
+//import GoogleSignIn
 
 struct Constants {
     static let cornerRadius: CGFloat = 8.0
 }
 struct LoginView: View {
     @Binding var isAuthenticated: Bool   //parameter
-    @State private var usernameEmail = ""
+    @State private var email = ""
     @State private var password = ""
     @State private var isEditing = false
-    
+    @EnvironmentObject var viewModel: AuthViewModel
     
     private func hideKeyboard() {
     // Resign first responder to hide the keyboard
@@ -55,7 +56,7 @@ struct LoginView: View {
                     Spacer()
                     VStack(alignment: .leading, spacing: 15) {
                       
-                      TextField("Email", text: self.$usernameEmail)
+                      TextField("Email", text: self.$email)
                         .padding()
                         .onTapGesture {
                             // Set isEditing to true when the TextField is tapped
@@ -64,6 +65,7 @@ struct LoginView: View {
                         .background(Color(UIColor.secondarySystemBackground))
                         .cornerRadius(20.0)
                         .autocorrectionDisabled()
+                        .disableAutocorrection(true)
                         .textInputAutocapitalization(.none)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
@@ -85,8 +87,31 @@ struct LoginView: View {
                                 .stroke(Color.gray, lineWidth: 0.5)
                         )
                     }.padding([.leading, .trailing], 27.5)
+                    HStack {
+                        Spacer()
+                        Button(action: {}) {  // add navigationlink like with below?
+                          Text("Forgot password?")
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                            .cornerRadius(15.0)
+//                            .underline()
+                        }
+                        .padding([.top], 10)
+                        .padding([.trailing], geometry.size.width / 11)
+                    }
+//                    .border(.red)
+//                    Button(action: {}) {  // add navigationlink like with below?
+//                      Text("Forgot Password")
+//                        .font(.headline)
+//                        .foregroundColor(.gray)
+//                        .cornerRadius(15.0)
+//                        .underline()
+//                    }
+//                    .padding([.top], 10)
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        viewModel.login(userEmail: email, userPassword: password)
+                    }) {
                       Text("Sign In")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -95,23 +120,51 @@ struct LoginView: View {
                         .background(Color(red: 0xdc / 255, green: 0x6d / 255, blue: 0x71 / 255))
                         .cornerRadius(30.0)
                     }
-                    .padding([.top], 20)
+                    .padding([.top], 5)
                     .onTapGesture {
                         hideKeyboard()
                     }
-                    .opacity((usernameEmail.isEmpty || password.isEmpty) ? 0.5 : 1.0)
-                    .disabled(usernameEmail.isEmpty || password.isEmpty)
+                    .opacity((email.isEmpty || password.isEmpty) ? 0.5 : 1.0)
+                    .disabled(email.isEmpty || password.isEmpty)
 //                    .luminanceToAlpha(0.5)
                     
-                    Button(action: {}) {  // add navigationlink like with below?
-                      Text("Forgot Password")
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                        .cornerRadius(15.0)
-                        .underline()
+//                    Button(action: {}) {  // add navigationlink like with below?
+//                      Text("Forgot Password")
+//                        .font(.headline)
+//                        .foregroundColor(.gray)
+//                        .cornerRadius(15.0)
+//                        .underline()
+//                    }
+//                    .padding(10)
+                    VStack {
+                        HStack {
+                            Text("⸻")
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .font(Font.custom("HermeneusOne-Regular", size: 18))
+                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                            Text("OR")
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .font(Font.custom("HermeneusOne-Regular", size: 14))
+                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                            Text("⸻")
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .font(Font.custom("HermeneusOne-Regular", size: 18))
+                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                        }
+                        Button(action: {}) {
+                          Image("googleicon")
+                                .resizable()
+                                .scaledToFit()
+                                .scaleEffect(0.75)
+                        }
                     }
-                    .padding(10)
-                    
+
+//                    Image("googleicon")
+//
+//                    Button(action: {}) {
+//                      Image("googleicon")
+//                    }
+//                    Image("googleicon")
                     Spacer()
                     
                     NavigationLink {
@@ -125,15 +178,6 @@ struct LoginView: View {
                             .cornerRadius(15.0)
                     }
                     .padding()
-//                        Text("Don't have an account? Sign Up")
-//                        .font(.headline)
-//                        .foregroundColor(.black)
-//    //                    .padding([.top], 100)
-//                        .cornerRadius(15.0)
-                        
-                    
-//                    .padding()
-    //                .offset(y: -20)
                 }
             }
         }
@@ -142,11 +186,6 @@ struct LoginView: View {
         
 //        .aspectRatio(contentMode: .fill)
 //        .ignoresSafeArea()
-    }
-
-private func login() {
-        // Implement your login logic here
-        print("Logging in")
     }
 }
 

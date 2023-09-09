@@ -31,7 +31,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
 
-        
         FirebaseApp.configure()
         return true
     }
@@ -41,11 +40,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct ForTwoApp: App {
     // inject into SwiftUI life-cycle via adaptor !!!
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+    @StateObject var viewModel = AuthViewModel()
+//    @EnvironmentObject var viewModel: AuthViewModel
     var body: some Scene {
         WindowGroup {
 //            QuestionsView()
             ContentView()
+                .environmentObject(viewModel)
+//            ContentView()
+//                .environmentObject(viewModel)
 //            LoginView()
         }
     }
