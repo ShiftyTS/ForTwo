@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var selectedIndex = 0
     @State private var isAuthenticated = false
 //    @ObservedObject var viewModel: AuthViewModel
+//    @ObservedObject
     @EnvironmentObject var viewModel: AuthViewModel
 //    init() {
 //            // Customize the appearance of the tab bar

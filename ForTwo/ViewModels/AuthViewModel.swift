@@ -36,7 +36,7 @@ class AuthViewModel: ObservableObject {
             
             guard let user = result?.user else { return }
             self.userSession = user
-            
+            self.fetchUser()
             print("DEBUG: Registered new user \(self.userSession)")
             
             let userInfo = ["email": userEmail, "uid": user.uid, "nickname": "Nickname", "connected": false, "coupleId": "", "enteredCode" : false]
@@ -49,7 +49,7 @@ class AuthViewModel: ObservableObject {
                 }
         }
         
-        self.fetchUser()
+//        self.fetchUser()
     }
     
     // also make it show for login so if after registering the person closes app and reopens somehwere else and logs in they still see that connectionview
@@ -62,10 +62,12 @@ class AuthViewModel: ObservableObject {
             }
             guard let user = result?.user else { return }
             self.userSession = user
+            self.fetchUser()
             print("User logged in")
         }
         
-        self.fetchUser()
+//        self.fetchUser()
+//        self.currentUser
     }
     
     func signOut() {
@@ -123,8 +125,8 @@ class AuthViewModel: ObservableObject {
         
         service.connectUserOffUid(withUid: uidPartner, curUserUid: self.userSession?.uid)
         
-        fetchUser()
-        
+        self.fetchUser()
+//        self.fetchUser()
     }
     
 //    func changeNickname(newNickname: String, coupleUid: String) {
