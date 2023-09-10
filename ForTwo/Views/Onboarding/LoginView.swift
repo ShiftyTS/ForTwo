@@ -89,16 +89,19 @@ struct LoginView: View {
                     }.padding([.leading, .trailing], 27.5)
                     HStack {
                         Spacer()
-                        Button(action: {}) {  // add navigationlink like with below?
-                          Text("Forgot password?")
-                            .font(.headline)
-                            .foregroundColor(.gray)
-                            .cornerRadius(15.0)
-//                            .underline()
+                        NavigationLink {
+                            ForgotPasswordView()
+                                .navigationBarHidden(true)
+                        } label: {
+                            Text("Forgot password?")
+                              .font(.headline)
+                              .foregroundColor(.gray)
+                              .cornerRadius(15.0)
                         }
                         .padding([.top], 10)
                         .padding([.trailing], geometry.size.width / 11)
                     }
+                    
 //                    .border(.red)
 //                    Button(action: {}) {  // add navigationlink like with below?
 //                      Text("Forgot Password")
@@ -175,8 +178,8 @@ struct LoginView: View {
                             .font(.headline)
                             .foregroundColor(.black)
         //                    .padding([.top], 100)
-                            .cornerRadius(15.0)
                     }
+                            .cornerRadius(15.0)
                     .padding()
                 }
             }

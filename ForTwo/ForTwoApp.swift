@@ -44,9 +44,11 @@ struct ForTwoApp: App {
 //    @EnvironmentObject var viewModel: AuthViewModel
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-//                .environmentObject(viewModel)
-            ConnectionView()
+            ContentView()
+                .environmentObject(viewModel)
+//            ConnectionView()
+//            LoginView()
+//            ForgotPasswordView()
         }
     }
 }

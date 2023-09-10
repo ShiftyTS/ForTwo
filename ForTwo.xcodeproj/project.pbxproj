@@ -11,13 +11,16 @@
 		19019FE42AA6AC7E00B2FEC1 /* HermeneusOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19019FE32AA6AAD200B2FEC1 /* HermeneusOne-Regular.ttf */; };
 		19019FE72AA6B1F500B2FEC1 /* ZapfinoExtraLT-One.otf in Resources */ = {isa = PBXBuildFile; fileRef = 19019FE62AA6B1F500B2FEC1 /* ZapfinoExtraLT-One.otf */; };
 		190DBBB32AABD99A00E7FC63 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190DBBB22AABD99A00E7FC63 /* ConnectionView.swift */; };
+		1974C1C02AAD2CB90063ABE4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1974C1BF2AAD2CB90063ABE4 /* UserService.swift */; };
+		1974C1C22AAD32500063ABE4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1974C1C12AAD32500063ABE4 /* User.swift */; };
+		1974C1C42AAE24540063ABE4 /* Couple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1974C1C32AAE24540063ABE4 /* Couple.swift */; };
+		19B81B542AACDE1000C1DB77 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B81B532AACDE1000C1DB77 /* ForgotPasswordView.swift */; };
 		19BD91A42AA291EA008B5F4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19BD91A32AA291EA008B5F4E /* GoogleService-Info.plist */; };
 		19BD91A72AA29D3C008B5F4E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD91A62AA29D3C008B5F4E /* LoginView.swift */; };
 		19BD91A92AA29D49008B5F4E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD91A82AA29D49008B5F4E /* RegistrationView.swift */; };
 		19BD91AE2AA2DE32008B5F4E /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD91AD2AA2DE32008B5F4E /* DatabaseManager.swift */; };
 		19BD91B02AA2DEBD008B5F4E /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD91AF2AA2DEBD008B5F4E /* AuthManager.swift */; };
 		19BD91B32AA2DEFA008B5F4E /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD91B22AA2DEFA008B5F4E /* StorageManager.swift */; };
-		19BD91B62AA2E192008B5F4E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD91B52AA2E192008B5F4E /* LoginViewModel.swift */; };
 		19CA3A4A2AA0076200224212 /* ForTwoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CA3A492AA0076200224212 /* ForTwoApp.swift */; };
 		19CA3A4C2AA0076200224212 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CA3A4B2AA0076200224212 /* ContentView.swift */; };
 		19CA3A4E2AA0076300224212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19CA3A4D2AA0076300224212 /* Assets.xcassets */; };
@@ -50,13 +53,16 @@
 		19019FE62AA6B1F500B2FEC1 /* ZapfinoExtraLT-One.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZapfinoExtraLT-One.otf"; sourceTree = "<group>"; };
 		190D600B2AA426C20055DE5F /* logo.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = logo.webp; sourceTree = "<group>"; };
 		190DBBB22AABD99A00E7FC63 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
+		1974C1BF2AAD2CB90063ABE4 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		1974C1C12AAD32500063ABE4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1974C1C32AAE24540063ABE4 /* Couple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Couple.swift; sourceTree = "<group>"; };
+		19B81B532AACDE1000C1DB77 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		19BD91A32AA291EA008B5F4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		19BD91A62AA29D3C008B5F4E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		19BD91A82AA29D49008B5F4E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		19BD91AD2AA2DE32008B5F4E /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		19BD91AF2AA2DEBD008B5F4E /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		19BD91B22AA2DEFA008B5F4E /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
-		19BD91B52AA2E192008B5F4E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		19CA3A462AA0076200224212 /* ForTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19CA3A492AA0076200224212 /* ForTwoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForTwoApp.swift; sourceTree = "<group>"; };
 		19CA3A4B2AA0076200224212 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +121,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		1974C1BE2AAD2CA80063ABE4 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1974C1BF2AAD2CB90063ABE4 /* UserService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		19BD91A22AA291CD008B5F4E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +170,7 @@
 				19BD91A62AA29D3C008B5F4E /* LoginView.swift */,
 				19BD91A82AA29D49008B5F4E /* RegistrationView.swift */,
 				190DBBB22AABD99A00E7FC63 /* ConnectionView.swift */,
+				19B81B532AACDE1000C1DB77 /* ForgotPasswordView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -163,7 +178,6 @@
 		19BD91B42AA2E171008B5F4E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				19BD91B52AA2E192008B5F4E /* LoginViewModel.swift */,
 				19E661C82AAB99AC00FF3228 /* AuthViewModel.swift */,
 			);
 			path = ViewModels;
@@ -172,6 +186,8 @@
 		19C450532AA2FEA900454E1C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1974C1C12AAD32500063ABE4 /* User.swift */,
+				1974C1C32AAE24540063ABE4 /* Couple.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -197,6 +213,7 @@
 		19CA3A482AA0076200224212 /* ForTwo */ = {
 			isa = PBXGroup;
 			children = (
+				1974C1BE2AAD2CA80063ABE4 /* Service */,
 				19019FE52AA6AD6F00B2FEC1 /* Info.plist */,
 				19019FDD2AA6A58A00B2FEC1 /* Components */,
 				190D600C2AA42F510055DE5F /* Fonts */,
@@ -411,13 +428,17 @@
 				19CA3A772AA0268000224212 /* HomeView.swift in Sources */,
 				19CA3A792AA026A700224212 /* QuestionsView.swift in Sources */,
 				19CA3A5F2AA0111500224212 /* MemoriesViewController.swift in Sources */,
+				1974C1C22AAD32500063ABE4 /* User.swift in Sources */,
 				19CA3A6E2AA0142200224212 /* SettingsViewController.swift in Sources */,
+				19B81B542AACDE1000C1DB77 /* ForgotPasswordView.swift in Sources */,
 				19CA3A6C2AA013A500224212 /* AnswerViewController.swift in Sources */,
 				190DBBB32AABD99A00E7FC63 /* ConnectionView.swift in Sources */,
 				19CA3A752AA0244500224212 /* CoupleConnectionViewController.swift in Sources */,
 				19CA3A632AA0114F00224212 /* testViewController.swift in Sources */,
 				19CA3A6A2AA0135900224212 /* RegistrationViewController.swift in Sources */,
+				1974C1C42AAE24540063ABE4 /* Couple.swift in Sources */,
 				19CA3A4A2AA0076200224212 /* ForTwoApp.swift in Sources */,
+				1974C1C02AAD2CB90063ABE4 /* UserService.swift in Sources */,
 				19CA3A682AA0134800224212 /* LoginViewController.swift in Sources */,
 				19CA3A5D2AA0110A00224212 /* QuestionsViewController.swift in Sources */,
 				19BD91A72AA29D3C008B5F4E /* LoginView.swift in Sources */,
@@ -426,7 +447,6 @@
 				19CA3A612AA0111E00224212 /* CoupleViewController.swift in Sources */,
 				19BD91B02AA2DEBD008B5F4E /* AuthManager.swift in Sources */,
 				19019FE22AA6A5B600B2FEC1 /* QuestionRowView.swift in Sources */,
-				19BD91B62AA2E192008B5F4E /* LoginViewModel.swift in Sources */,
 				19BD91A92AA29D49008B5F4E /* RegistrationView.swift in Sources */,
 				19BD91AE2AA2DE32008B5F4E /* DatabaseManager.swift in Sources */,
 				19D008EE2AAA844700B89E02 /* LetterWaitingView.swift in Sources */,
