@@ -129,11 +129,14 @@ class AuthViewModel: ObservableObject {
 //        self.fetchUser()
     }
     
-//    func changeNickname(newNickname: String, coupleUid: String) {
-//        print("changenick")
-//
-//        service.changeNickname(newNickname: newNickname, coupleUid: coupleUid)
-//    }
+    func changeNickname(newNickname: String, coupleUid: String, changeNicknameOne: Bool) {
+        print("changenick")
+        print(coupleUid)
+        
+        service.changeNickname(newNickname: newNickname, coupleUid: coupleUid, changeNicknameOne: changeNicknameOne)
+        
+        self.fetchUser()
+    }
     
 //    func reloadData() async {
 //        dataReloadTrigger = UUID()

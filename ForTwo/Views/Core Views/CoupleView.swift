@@ -39,13 +39,13 @@ struct CoupleView: View {
                         VStack{
                             HStack {
                                 //                        Spacer()
-                                Text("couplehere!")
+                                Text(couple.nicknameOne)
                                     .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                     .font(Font.custom("HermeneusOne-Regular", size: 17))
                                 Text("❤️")
                                     .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                     .font(Font.custom("HermeneusOne-Regular", size: 17))
-                                Text("Name2")
+                                Text(couple.nicknameTwo)
                                     .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                     .font(Font.custom("HermeneusOne-Regular", size: 17))
                             }
@@ -60,7 +60,7 @@ struct CoupleView: View {
                                     .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                     .font(Font.custom("HermeneusOne-Regular", size: 17))
                                 //                            .padding([.bottom], 2)
-                                Text("160")
+                                Text(String(couple.daysTogether))
                                     .foregroundColor(Color(.black))
                                     .font(Font.custom("ZapfinoExtraLT-One", size: 40))
                                     .padding([.top], 7)
@@ -84,7 +84,7 @@ struct CoupleView: View {
                                         Spacer()
                                         
                                         //user.nickname
-                                        TextField("user.nickname", text: self.$nickname)
+                                        TextField(user.nickname, text: self.$nickname)
                                             .padding([.vertical], 7)
                                             .padding([.horizontal], 7)
                                             .onTapGesture {
@@ -104,9 +104,10 @@ struct CoupleView: View {
                                             .frame(width: geometry.size.width / 2)
                                         Button(action: {
                                             //                                                    viewModel.didAuthenticateUser = true
-                                            //                                        viewModel.changeNickname(newNickname: nickname, coupleUid: couple.id ?? "blahh")
+                                            viewModel.changeNickname(newNickname: nickname, coupleUid: couple.id ?? "blahh", changeNicknameOne: user.enteredCode)
                                             //                                                    print(coupleCode)
                                             print("cur user")
+                                            nickname = ""
                                             //                                                    print(self.currentUser?.id)
                                         }) {
                                             Image(systemName: isEditing ? "checkmark" : "pencil")

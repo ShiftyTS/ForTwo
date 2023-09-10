@@ -113,7 +113,8 @@ struct UserService {
                     
                     userOne.updateData([
                         "coupleId": combinedUid,
-                        "connected": true
+                        "connected": true,
+                        "enteredCode": true
                     ]) { err in
                         if let err = err {
                             print("Error updating document: \(err)")
@@ -142,8 +143,34 @@ struct UserService {
         print("afteroffuid")
     }
     
-    func changeNickname(newNickname: String, coupleUid: String) {
-//        let db = Firestore.firestore()
+    func changeNickname(newNickname: String, coupleUid: String, changeNicknameOne: Bool) {
+        print("Start")
+        let db = Firestore.firestore()
+        if changeNicknameOne {
+            db.collection("couples")
+                .document(coupleUid)
+                .updateData([
+                    "nicknameOne": newNickname
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+        } else {
+            db.collection("couples")
+                .document(coupleUid)
+                .updateData([
+                    "nicknameTwo": newNickname
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+        }
 //        db.collection("couples")
 //            .document(coupleUid)
 //            .updateData([
