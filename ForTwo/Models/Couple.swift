@@ -7,11 +7,11 @@
 
 import FirebaseFirestoreSwift
 
-struct Question: Codable {
-  let questionText: String
-  let responseOne: String
-  let responseTwo: String
-}
+//struct Question: Codable {
+//  let questionText: String
+//  let responseOne: String
+//  let responseTwo: String
+//}
 
 struct Couple: Identifiable, Decodable {
     @DocumentID var id: String?

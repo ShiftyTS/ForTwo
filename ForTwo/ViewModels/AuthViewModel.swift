@@ -14,6 +14,7 @@ class AuthViewModel: ObservableObject {
     @Published var didAuthenticateUser = false
     @Published var currentUser: User?
     @Published var currentCouple: Couple?
+    @Published var refreshCouple: Couple?
     @Published var dataReloadTrigger = UUID()
     
     private let service = UserService()
@@ -22,6 +23,9 @@ class AuthViewModel: ObservableObject {
         self.userSession = Auth.auth().currentUser
         self.fetchUser()
 //        self.fetchCouple()
+//        if currentUser?.connected {
+//            self.fetchCouple(coupleId: currentUser?.coupleId)
+//        }
 //        print("DEBUG: User session is \(self.userSession?.uid)")
     }
     
@@ -75,6 +79,7 @@ class AuthViewModel: ObservableObject {
         userSession = nil
 //        currentUser = nil
 //        currentCouple = nil
+        currentCouple = refreshCouple
         // Signs user out on backend/server
         try? Auth.auth().signOut()
     }
@@ -126,6 +131,7 @@ class AuthViewModel: ObservableObject {
         service.connectUserOffUid(withUid: uidPartner, curUserUid: self.userSession?.uid)
         
         self.fetchUser()
+//        self.fetchNewQuestion(coupleId: self.userSession?.uid ?? "" + uidPartner)
 //        self.fetchUser()
     }
     
@@ -140,8 +146,8 @@ class AuthViewModel: ObservableObject {
     
     func fetchNewQuestion(coupleId: String) {
         var questionTexts: [String] = []
-        let questions = currentCouple?.questions
-        for question in questions ?? [] {
+        let questions = currentCouple?.questions ?? []
+        for question in questions {
             if let text = question["questionText"] {
                 questionTexts.append(text)
             } else {
@@ -157,5 +163,7 @@ class AuthViewModel: ObservableObject {
 //        print(questions)
 //        for question in
         service.fetchNewQuestion(currentQuestions: setQuestions, numQuestions: count, coupleId: coupleId)
+        
+        self.fetchCouple(coupleId: coupleId)
     }
 }

@@ -516,7 +516,7 @@ struct CoupleView: View {
             //            Text("Fail")
             //        }
         } else {
-            Text("Fail")
+//            Text("Fail")
         }
     }
 }

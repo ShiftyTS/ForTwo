@@ -85,13 +85,15 @@ struct UserService {
                         "nicknameOne": "DefaultName",
                         "nicknameTwo": "DefaultName",
                         "daysTogether": 1,
-                        "questions": [
-                            "questionText": "What movie do you want to watch with your partner?",
-                            "responseOne": "",
-                            "responseTwo": ""
-                        ]
+                        "questions": []
+//                        "questions": [
+//                            "questionText": "What movie do you want to watch with your partner?",
+//                            "responseOne": "",
+//                            "responseTwo": ""
+//                        ]
                     ]
-
+                    
+                    
 //                    let userInfo = ["test": "dwad"]
 //                    guard let user = try? snapshot.data(as: User.self) else { return }
                     
@@ -107,6 +109,8 @@ struct UserService {
                             print("DEBUG: Upload couple data")
         //                    self.didAuthenticateUser = true
                         }
+                    
+                    
                     
                     let userOne = db.collection("users").document(stringCurUid)
                     let userTwo = db.collection("users").document(stringUidTwo)
@@ -191,20 +195,22 @@ struct UserService {
 //                        let arrayLength = dataArray.count
                         
                         for question in questionsArray {
-                            print(question)
-                            print(numQuestions)
-                            print(currentQuestions.count)
+//                            print(question)
+//                            print(numQuestions)
+//                            print(currentQuestions.count)
                             currentQuestions.add(question)
-                            print(currentQuestions.count)
-                            if currentQuestions.count != numQuestions {
+//                            print(currentQuestions.count)
+                            let newCount = currentQuestions.count
+                            if newCount != numQuestions {
                                 print("rock")
                                 db.collection("couples")
                                     .document(coupleId)
                                     .updateData([
                                         "questions": FieldValue.arrayUnion([
                                             ["questionText": question,
-                                            "responseOne": "",
-                                            "responseTwo": ""]
+                                             "questionNum": String(newCount),
+                                             "responseOne": "",
+                                             "responseTwo": ""]
                                         ])
                                     ])
                                 break

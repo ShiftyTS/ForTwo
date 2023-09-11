@@ -8,16 +8,8 @@
 import SwiftUI
 
 struct QuestionsView: View {
-//    init() {
-//        // Customize the appearance of the navigation bar
-//        let appearance = UINavigationBarAppearance()
-//        if let backgroundImage = UIImage(named: "background") {
-//            appearance.backgroundImage = backgroundImage
-//        }
-//        
-//        UINavigationBar.appearance().standardAppearance = appearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-//    }
+    @EnvironmentObject var viewModel: AuthViewModel
+    @State var questionCounter: Int = 1
     
     var body: some View {
         NavigationView {
@@ -29,13 +21,41 @@ struct QuestionsView: View {
                 VStack{
                     ScrollView {
                         LazyVStack {
-                            ForEach(0 ... 20, id: \.self) { _ in
-                                NavigationLink {
-//                                    QuestionRowView() // ?
-                                } label: {
-                                    QuestionRowView()
+                            if let user = viewModel.currentUser, let couple = viewModel.currentCouple {
+//                                ForEach(couple.questions, id: \.self)
+                                //                            if var coupleQuestions = viewModel.currentCouple?.questions {
+                                ForEach(couple.questions.reversed(), id: \.self) { question in
+                                    if let text = question["questionText"] {
+//                                        NavigationLink {
+//                                            RegistrationView(isAuthenticated: .constant(false))
+//                                                .navigationBarHidden(true)
+//                                        } label: {
+//                                                Text("Don't have an account? Sign Up")
+//                                                .font(.headline)
+//                                                .foregroundColor(.black)
+//                            //                    .padding([.top], 100)
+//                                        }
+                                        NavigationLink {
+                                            QuestionAnswerView()
+                                                .navigationBarHidden(true)
+                                        } label: {
+                                            QuestionRowView(questionText: text, questionNum: question["questionNum"] ?? "")
+                                        }
+//                                        questionCounter += 1
+                                    }
+//                                    self.questionCounter += 1
                                 }
+                            
+                                //                            ForEach(viewModel.)
                             }
+                            
+//                            ForEach(0 ... 20, id: \.self) { _ in
+//                                NavigationLink {
+////                                    QuestionRowView() // ?
+//                                } label: {
+//                                    QuestionRowView(questionText: "text", questionNum: questionCounter)
+//                                }
+//                            }
                         }
                     }
                 }
@@ -56,6 +76,7 @@ struct QuestionsView: View {
 struct QuestionsView_Previews: PreviewProvider {
     static var previews: some View {
         QuestionsView()
+            .environmentObject(AuthViewModel())
     }
 }
 
