@@ -11,7 +11,7 @@ struct QuestionRowView: View {
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
             Button(action: {}) {
-                Text("#01")
+                Text("#01") // change to state variable
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .font(Font.custom("ZapfinoExtraLT-One", size: 32))
                     .foregroundColor(Color(red: 0xFC / 255, green: 0x4C / 255, blue: 0x4E / 255))
@@ -20,7 +20,7 @@ struct QuestionRowView: View {
                     .padding([.top], 7)
                     .padding([.trailing], 2)
 //                    .border(.blue)
-                Text("What was your first impression of your partner?")
+                Text("What was your first impression of your partner?") // change to state variable
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .font(Font.custom("HermeneusOne-Regular", size: 18))
                     .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))

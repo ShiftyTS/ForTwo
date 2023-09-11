@@ -90,7 +90,13 @@ struct HomeView: View {
     //                            let safeArea = geometry.safeAreaInsets
     //                            let safeAreaWidth = geometry.size.width - safeArea.leading - safeArea.trailing
     //                            let safeAreaHeight = geometry.size.height - safeArea.top - safeArea.bottom
-                                Button(action: {}) {
+                                Button(action: {
+                                    if let coupleId = viewModel.currentCouple?.id {
+                                        viewModel.fetchNewQuestion(coupleId: coupleId)
+                                    } else {
+                                        print("Failed to fetch")
+                                    }
+                                }) {
                                     Spacer()
                                     Image("letter icon")
                                         .resizable()

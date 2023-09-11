@@ -138,7 +138,24 @@ class AuthViewModel: ObservableObject {
         self.fetchUser()
     }
     
-//    func reloadData() async {
-//        dataReloadTrigger = UUID()
-//    }
+    func fetchNewQuestion(coupleId: String) {
+        var questionTexts: [String] = []
+        let questions = currentCouple?.questions
+        for question in questions ?? [] {
+            if let text = question["questionText"] {
+                questionTexts.append(text)
+            } else {
+                print("error")
+            }
+//            print(question["questionText"])
+        }
+        
+        var setQuestions = NSMutableOrderedSet(array: questionTexts)
+        let count = setQuestions.count
+        print(setQuestions)
+//        print(questionTexts)
+//        print(questions)
+//        for question in
+        service.fetchNewQuestion(currentQuestions: setQuestions, numQuestions: count, coupleId: coupleId)
+    }
 }

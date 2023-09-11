@@ -50,7 +50,7 @@ struct UserService {
                 completion(couple)
 //                print("Email: \(user.email)")
                 print("Nickname: \(couple.nicknameOne)")
-                print("test \(couple.questions["question1"])")
+//                print("test \(couple.questions["question1"])")
 //                print("id: \(user.id)")
 //                print("Connected: \(user.connected)")
 //                print("CoupleID: \(user.coupleId)")
@@ -76,7 +76,7 @@ struct UserService {
                     
                     let uidTwo = document.get("uid")
                     let nicknameTwo = document.get("nickname")
-
+                    let question =
                     print("before123")
 //                    print(currentUser?.id)
                     let userInfo: [String: Any] = [
@@ -86,9 +86,9 @@ struct UserService {
                         "nicknameTwo": "DefaultName",
                         "daysTogether": 1,
                         "questions": [
-                            "1": [
-                                "Test question"
-                            ]
+                            "questionText": "What movie do you want to watch with your partner?",
+                            "responseOne": "",
+                            "responseTwo": ""
                         ]
                     ]
 
@@ -177,5 +177,43 @@ struct UserService {
 //                ""// hgow to know nickname one vs nicknametwo? // change the user nickname, then set nikcnameone to
 //            ])
         print("at change")
+    }
+    
+    func fetchNewQuestion(currentQuestions: NSMutableOrderedSet, numQuestions: Int, coupleId: String) {
+        print("fetchingnewquestion")
+        let db = Firestore.firestore()
+        db.collection("allQuestions")
+            .document("questions")
+            .getDocument() { (document, error) in
+                if let document = document, document.exists {
+                    if let dataDescription = document.data(), var questionsArray = dataDescription["questionTexts"] as? [String] {
+                        questionsArray.shuffle()
+//                        let arrayLength = dataArray.count
+                        
+                        for question in questionsArray {
+                            print(question)
+                            print(numQuestions)
+                            print(currentQuestions.count)
+                            currentQuestions.add(question)
+                            print(currentQuestions.count)
+                            if currentQuestions.count != numQuestions {
+                                print("rock")
+                                db.collection("couples")
+                                    .document(coupleId)
+                                    .updateData([
+                                        "questions": FieldValue.arrayUnion([
+                                            ["questionText": question,
+                                            "responseOne": "",
+                                            "responseTwo": ""]
+                                        ])
+                                    ])
+                                break
+                            }
+                        }
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
     }
 }
