@@ -170,6 +170,7 @@ struct CoupleView: View {
                                                 .onTapGesture {
                                                     hideKeyboard()
                                                 }
+                                                
                                             //                                .overlay(
                                             //                                    Rectangle()
                                             //                                        .cornerRadius(30)
@@ -196,7 +197,7 @@ struct CoupleView: View {
                                                     .multilineTextAlignment(.center)
                                                     .padding(5)
                                                 Button(action: {}) {
-                                                    Text("a7YJjR3XYlhhrBTowiuptxxyIJn1")
+                                                    Text(user.id ?? "")
                                                         .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                                         .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                         .multilineTextAlignment(.center)
@@ -205,7 +206,7 @@ struct CoupleView: View {
                                                         .underline(true, color: Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                                         .baselineOffset(5.0)
                                                         .onTapGesture {
-                                                            copyToClipboard("a7YJjR3XYlhhrBTowiuptxxyIJn1")
+                                                            copyToClipboard(user.id ?? "")
                                                         }
                                                 }
                                                 TextField("Enter your partner's couple code", text: self.$coupleCode)
@@ -334,7 +335,7 @@ struct CoupleView: View {
                                     .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                     .font(Font.custom("HermeneusOne-Regular", size: 17))
                                 //                            .padding([.bottom], 2)
-                                Text("160")
+                                Text("0")
                                     .foregroundColor(Color(.black))
                                     .font(Font.custom("ZapfinoExtraLT-One", size: 40))
                                     .padding([.top], 7)
@@ -358,7 +359,7 @@ struct CoupleView: View {
                                         Spacer()
                                         
                                         //user.nickname
-                                        TextField("user.nickname", text: self.$nickname)
+                                        TextField(user.nickname ?? "", text: self.$nickname)
                                             .padding([.vertical], 7)
                                             .padding([.horizontal], 7)
                                             .onTapGesture {
@@ -438,7 +439,7 @@ struct CoupleView: View {
                                                     .multilineTextAlignment(.center)
                                                     .padding(5)
                                                 Button(action: {}) {
-                                                    Text("a7YJjR3XYlhhrBTowiuptxxyIJn1")
+                                                    Text(user.id ?? "")
                                                         .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                                         .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                         .multilineTextAlignment(.center)
@@ -447,7 +448,7 @@ struct CoupleView: View {
                                                         .underline(true, color: Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                                         .baselineOffset(5.0)
                                                         .onTapGesture {
-                                                            copyToClipboard("a7YJjR3XYlhhrBTowiuptxxyIJn1")
+                                                            copyToClipboard(user.id ?? "")
                                                         }
                                                 }
                                                 TextField("Enter your partner's couple code", text: self.$coupleCode)
@@ -521,7 +522,9 @@ struct CoupleView: View {
                                 
                                 // user.connected
                                 if user.connected {
-                                    Button(action: {}) {
+                                    Button(action: {
+                                        
+                                    }) {
                                         Text("Disconnect with partner 💔")
                                             .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                             .font(Font.custom("HermeneusOne-Regular", size: 17))

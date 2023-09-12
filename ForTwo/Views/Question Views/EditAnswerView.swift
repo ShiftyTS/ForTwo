@@ -17,7 +17,7 @@ struct EditAnswerView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        if let user = viewModel.currentUser, let couple = viewModel.currentCouple {
+        if let user = viewModel.currentUser, let couple = viewModel.currentCouple, let questions = viewModel.questions {
             NavigationView {
                 GeometryReader { geometry in
                     ZStack {
@@ -43,10 +43,14 @@ struct EditAnswerView: View {
 //                                    let questionNum = questionNum ?? "0"
                                     if let unwrappedQuestionNum = Int(questionNum) {
                                         if user.id == couple.uidOne {
-                                            viewModel.updateResponse(newResponse: responseOne, arrayNum: unwrappedQuestionNum, coupleId: couple.id ?? "", changeResponseOne: true)
+                                            viewModel.updateResponse(newResponse: responseOne, mapNum: unwrappedQuestionNum, coupleId: couple.id ?? "", changeResponseOne: true)
                                         } else {
-                                            viewModel.updateResponse(newResponse: responseTwo, arrayNum: unwrappedQuestionNum, coupleId: couple.id ?? "", changeResponseOne: false)
+                                            viewModel.updateResponse(newResponse: responseTwo, mapNum: unwrappedQuestionNum, coupleId: couple.id ?? "", changeResponseOne: false)
                                         }
+                                        
+                                        viewModel.fetchCouple(coupleId: couple.id ?? "")
+//                                        viewModel.fetchAllCoupleQuestions(coupleId: couple.id ?? "")
+                                        presentationMode.wrappedValue.dismiss()
                                     }
 //                                    if user.id == couple.uidOne {
 //                                        viewModel.updateResponse(newResponse: responseOne, arrayNum: Int(questionNum) - 1, coupleId: couple.id ?? "", changeResponseOne: true)
@@ -73,7 +77,7 @@ struct EditAnswerView: View {
                                             Text(questionText)
                                                 .font(Font.custom("HermeneusOne-Regular", size: 20))
                                                 .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                                .border(.red)
+//                                                .border(.red)
                                         }
                                         .padding([.bottom], 5)
                                         
@@ -89,11 +93,11 @@ struct EditAnswerView: View {
                                                 .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                 .foregroundColor(Color(red: 0xa9 / 255, green: 0xa9 / 255, blue: 0xa9 / 255))
                                                 .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                                .border(.red)
+//                                                .border(.red)
                                         }
                                     }
                                     .frame(width: geometry.size.width * 0.85, alignment: .leading)
-                                    .border(.blue)
+//                                    .border(.blue)
                                     
                                     Spacer()
                                     
@@ -101,51 +105,56 @@ struct EditAnswerView: View {
                                         VStack {
                                             // Name1
                                             Spacer()
-                                            Text("couple.nicknameOne")
+                                            Text(couple.nicknameOne)
                                                 .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                 .frame(width: geometry.size.width * 0.85, alignment: .leading)
-                                                .border(.red)
+//                                                .border(.red)
                                                 .padding([.vertical], 4)
     //                                        Spacer()
 //                                            TextField("responseOne")
 //                                            TextField("test", text: self.$responseOne)
-                                          TextField("Placeholder Text", text: self.$responseOne)
-                                              .textFieldStyle(PlainTextFieldStyle())
-                                              .font(Font.custom("HermeneusOne-Regular", size: 16))
-                                              .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
-                                              .frame(width: geometry.size.width * 0.85, alignment: .leading)
-                                              .border(.red)
+                                            if let innerMap = questions[questionNum], let resOne = innerMap["responseOne"] {
+                                                TextField("Enter your response", text: self.$responseOne)
+                                                    .textFieldStyle(PlainTextFieldStyle())
+                                                    .font(Font.custom("HermeneusOne-Regular", size: 16))
+                                                    .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
+                                                    .frame(width: geometry.size.width * 0.85, alignment: .leading)
+//                                                    .border(.red)
+                                            }
+                                          
                                         }
                                         .padding([.bottom], geometry.size.height / 40)
                                     } else {
                                         VStack {
                                             // Name1
                                             Spacer()
-                                            Text("couple.nicknameTwo")
+                                            Text(couple.nicknameTwo)
                                                 .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                 .frame(width: geometry.size.width * 0.85, alignment: .leading)
-                                                .border(.red)
+//                                                .border(.red)
                                                 .padding([.vertical], 4)
     //                                        Spacer()
-                                            Text("responseTwo")
-                                                .font(Font.custom("HermeneusOne-Regular", size: 16))
-                                                .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
-                                                .frame(width: geometry.size.width * 0.85, alignment: .leading)
-                                                .border(.red)
+                                            if let innerMap = questions[questionNum], let resTwo = innerMap["responseTwo"] {
+                                                TextField("Enter your response", text: self.$responseTwo, axis: .vertical)
+                                                    .font(Font.custom("HermeneusOne-Regular", size: 16))
+                                                    .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
+                                                    .frame(width: geometry.size.width * 0.85, alignment: .leading)
+//                                                    .border(.red)
+                                            }
                                         }
                                     }
                                     
 //
                                 }
-                                .border(.red)
+//                                .border(.red)
                             }
                             .frame(width: geometry.size.width * 0.85)
-                            .border(.red)
+//                            .border(.red)
                             
                             HStack {
 
                             }
-                            .border(.green)
+//                            .border(.green)
                             .frame(width: geometry.size.width, height: geometry.size.height / 12)
                         }
                         //                    .border(.red)

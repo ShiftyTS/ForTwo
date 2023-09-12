@@ -18,7 +18,8 @@ struct Couple: Identifiable, Decodable {
     let daysTogether: Int
     let nicknameOne: String
     let nicknameTwo: String
-    let questions: [[String: String]]  // [String: [String: String]]
+    let questions: [String: [String: String]]
+//    let questions: [[String: String]]  // [String: [String: String]]
     let uidOne: String
     let uidTwo: String
 }

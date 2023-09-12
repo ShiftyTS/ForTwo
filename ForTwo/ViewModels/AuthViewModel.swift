@@ -15,7 +15,7 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var currentCouple: Couple?
     @Published var refreshCouple: Couple?
-    @Published var questions: [[String: String]]?
+    @Published var questions: [String: [String: String]]?
 //    @Published var dataReloadTrigger = UUID()
     
     private let service = UserService()
@@ -85,6 +85,15 @@ class AuthViewModel: ObservableObject {
         try? Auth.auth().signOut()
     }
     
+    func disconnectCouple() {
+        // Sest user session to nil, shows login view
+//        currentUser = nil
+//        currentCouple = nil
+        service.disconnectCouple()
+        
+        currentCouple = refreshCouple
+    }
+    
     func recoverPassword(userEmail: String) {
         Auth.auth().sendPasswordReset(withEmail: userEmail) { error in
             if let error = error {
@@ -149,9 +158,9 @@ class AuthViewModel: ObservableObject {
     
     func fetchNewQuestion(coupleId: String) {
         var questionTexts: [String] = []
-        let questions = currentCouple?.questions ?? []
+        let questions = currentCouple?.questions ?? [:]
         for question in questions {
-            if let text = question["questionText"] {
+            if let text = question.value["questionText"] {
                 questionTexts.append(text)
             } else {
                 print("error")
@@ -180,7 +189,7 @@ class AuthViewModel: ObservableObject {
                     return
                 }
                 
-                if let questions = data["questions"] as? [[String: String]] {
+                if let questions = data["questions"] as? [String: [String: String]] {
                     self.questions = questions
                 }
             }
@@ -189,7 +198,15 @@ class AuthViewModel: ObservableObject {
 //        fetchCouple(coupleId: coupleId)
     }
     
-    func updateResponse(newResponse: String, arrayNum: Int, coupleId: String, changeResponseOne: Bool) {
-        service.updateResponse(newResponse: newResponse, arrayNum: arrayNum, coupleId: coupleId, changeResponseOne: changeResponseOne)
+    func updateResponse(newResponse: String, mapNum: Int, coupleId: String, changeResponseOne: Bool) {
+        service.updateResponse(newResponse: newResponse, mapNum: mapNum, coupleId: coupleId, changeResponseOne: changeResponseOne)
+        
+//        fetchCouple(coupleId: coupleId)
+//        { couple in
+//            self.currentCouple = couple
+//        }
+        self.fetchCouple(coupleId: coupleId)
+//        self.fetchAllCoupleQuestions(coupleId: coupleId)
+//        fetchAllCoupleQuestions(coupleId: coupleId)
     }
 }

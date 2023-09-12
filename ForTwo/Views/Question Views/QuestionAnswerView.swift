@@ -10,14 +10,14 @@ import SwiftUI
 struct QuestionAnswerView: View {
     @State var questionText: String
     @State var questionNum: String
-    @State var responseOne: String
-    @State var responseTwo: String
+//    @State var responseOne: String
+//    @State var responseTwo: String
     @State private var isEditing = false
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        if let user = viewModel.currentUser, let couple = viewModel.currentCouple {
+        if let user = viewModel.currentUser, let couple = viewModel.currentCouple, let questions = viewModel.questions {
             NavigationView {
                 GeometryReader { geometry in
                     ZStack {
@@ -27,8 +27,12 @@ struct QuestionAnswerView: View {
                         VStack {
                             HStack { ///AJUIKDBWDBHAIUWDB  -> Implement the edit answer view functionality and view
                                 NavigationLink {
-                                    EditAnswerView(questionText: questionText, questionNum: questionNum, responseOne: responseOne, responseTwo: responseTwo)
-                                        .navigationBarHidden(true)
+                                    if let innerMap = questions[questionNum], let resOne = innerMap["responseOne"], let resTwo = innerMap["responseTwo"] {
+                                        EditAnswerView(questionText: questionText, questionNum: questionNum, responseOne: resOne, responseTwo: resTwo)
+                                            .navigationBarHidden(true)
+                                    }
+//                                    EditAnswerView(questionText: questionText, questionNum: questionNum, responseOne: couple.questions[questionNum]["responseOne"], responseTwo: couple.questions[questionNum]["responseOne"])
+//                                        .navigationBarHidden(true)
                                 } label: {
                                     HStack {
                                         Image("pencilicon")
@@ -105,10 +109,12 @@ struct QuestionAnswerView: View {
     //                                            .border(.red)
                                                 .padding([.vertical], 4)
     //                                        Spacer()
-                                            Text(responseOne)
-                                                .font(Font.custom("HermeneusOne-Regular", size: 16))
-                                                .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
-                                                .frame(width: geometry.size.width * 0.85, alignment: .leading)
+                                            if let innerMap = questions[questionNum], let resOne = innerMap["responseOne"] {
+                                                Text(resOne)
+                                                    .font(Font.custom("HermeneusOne-Regular", size: 16))
+                                                    .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
+                                                    .frame(width: geometry.size.width * 0.85, alignment: .leading)
+                                            }
     //                                            .border(.red)
                                         }
                                         .padding([.bottom], geometry.size.height / 40)
@@ -122,10 +128,12 @@ struct QuestionAnswerView: View {
     //                                            .border(.red)
                                                 .padding([.vertical], 4)
     //                                        Spacer()
-                                            Text(responseTwo)
-                                                .font(Font.custom("HermeneusOne-Regular", size: 16))
-                                                .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
-                                                .frame(width: geometry.size.width * 0.85, alignment: .leading)
+                                            if let innerMap = questions[questionNum], let resTwo = innerMap["responseTwo"] {
+                                                Text(resTwo)
+                                                    .font(Font.custom("HermeneusOne-Regular", size: 16))
+                                                    .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
+                                                    .frame(width: geometry.size.width * 0.85, alignment: .leading)
+                                            }
     //                                            .border(.red)
                                         }
                                     } else {
@@ -138,10 +146,12 @@ struct QuestionAnswerView: View {
     //                                            .border(.red)
                                                 .padding([.vertical], 4)
     //                                        Spacer()
-                                            Text(responseTwo)
-                                                .font(Font.custom("HermeneusOne-Regular", size: 16))
-                                                .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
-                                                .frame(width: geometry.size.width * 0.85, alignment: .leading)
+                                            if let innerMap = questions[questionNum], let resTwo = innerMap["responseTwo"] {
+                                                Text(resTwo)
+                                                    .font(Font.custom("HermeneusOne-Regular", size: 16))
+                                                    .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
+                                                    .frame(width: geometry.size.width * 0.85, alignment: .leading)
+                                            }
     //                                            .border(.red)
                                         }
                                         .padding([.bottom], geometry.size.height / 40)
@@ -155,11 +165,13 @@ struct QuestionAnswerView: View {
     //                                            .border(.red)
                                                 .padding([.vertical], 4)
     //                                        Spacer()
-                                            Text(responseOne)
-                                                .font(Font.custom("HermeneusOne-Regular", size: 16))
-                                                .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
-                                                .frame(width: geometry.size.width * 0.85, alignment: .leading)
-    //                                            .border(.red)
+                                            if let innerMap = questions[questionNum], let resOne = innerMap["responseOne"] {
+                                                Text(resOne)
+                                                    .font(Font.custom("HermeneusOne-Regular", size: 16))
+                                                    .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
+                                                    .frame(width: geometry.size.width * 0.85, alignment: .leading)
+                                                //                                            .border(.red)
+                                            }
                                         }
                                     }
                                     
@@ -216,7 +228,7 @@ struct QuestionAnswerView: View {
 
 struct QuestionAnswerView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionAnswerView(questionText: "On days with weather like today, what do you feel like cooking/eating together?", questionNum: "13", responseOne: "one", responseTwo: "two")
+        QuestionAnswerView(questionText: "On days with weather like today, what do you feel like cooking/eating together?", questionNum: "13")
             .environmentObject(AuthViewModel())
     }
 }

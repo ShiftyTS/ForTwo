@@ -85,7 +85,7 @@ struct UserService {
                         "nicknameOne": "DefaultName",
                         "nicknameTwo": "DefaultName",
                         "daysTogether": 1,
-                        "questions": []
+                        "questions": [:]
 //                        "questions": [
 //                            "questionText": "What movie do you want to watch with your partner?",
 //                            "responseOne": "",
@@ -206,12 +206,10 @@ struct UserService {
                                 db.collection("couples")
                                     .document(coupleId)
                                     .updateData([
-                                        "questions": FieldValue.arrayUnion([
-                                            ["questionText": question,
-                                             "questionNum": String(newCount),
-                                             "responseOne": "",
-                                             "responseTwo": ""]
-                                        ])
+                                        "questions.\(newCount).questionText": question,
+                                        "questions.\(newCount).questionNum": String(newCount),
+                                        "questions.\(newCount).responseOne": "",
+                                        "questions.\(newCount).responseTwo": ""
                                     ])
                                 break
                             }
@@ -223,13 +221,13 @@ struct UserService {
             }
     }
     
-    func updateResponse(newResponse: String, arrayNum: Int, coupleId: String, changeResponseOne: Bool) {
+    func updateResponse(newResponse: String, mapNum: Int, coupleId: String, changeResponseOne: Bool) {
         let db = Firestore.firestore()
         if changeResponseOne {
             db.collection("couples")
                 .document(coupleId)
                 .updateData([
-                    "questions[0]": [3]
+                    "questions.\(mapNum).responseOne": newResponse
                 ]) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
@@ -241,7 +239,7 @@ struct UserService {
             db.collection("couples")
                 .document(coupleId)
                 .updateData([
-                    "responseTwo": newResponse
+                    "questions.\(mapNum).responseTwo": newResponse
                 ]) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
@@ -250,5 +248,27 @@ struct UserService {
                     }
                 }
         }
+        
+//        guard let couple = try? snapshot.data(as: Couple.self) else {
+//            print("745897")
+//            return
+//
+//        }
+//
+//        completion(couple)
+//        fetchCouple(withCoupleId: , completion: <#T##(Couple) -> Void#>)
+    }
+    
+    func disconnectCouple() {
+        
     }
 }
+
+
+
+//                                        "questions": FieldValue.arrayUnion([
+//                                            ["questionText": question,
+//                                             "questionNum": String(newCount),
+//                                             "responseOne": "",
+//                                             "responseTwo": ""]
+//                                        ])

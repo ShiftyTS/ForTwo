@@ -25,8 +25,9 @@ struct QuestionsView: View {
                             if let user = viewModel.currentUser, let couple = viewModel.currentCouple, let questions = viewModel.questions {
 //                                ForEach(couple.questions, id: \.self)
                                 //                            if var coupleQuestions = viewModel.currentCouple?.questions {
-                                ForEach(questions.reversed(), id: \.self) { question in
-                                    if let text = question["questionText"], let questionNum = question["questionNum"], let resOne = question["responseOne"], let resTwo = question["responseTwo"] {
+                                ForEach(questions.keys.sorted(by: >), id: \.self) { questionKey in
+                                    if let questionValue = questions[questionKey], let text = questionValue["questionText"], let questionNum = questionValue["questionNum"] {
+//                                    if let text = question.value["questionText"], let questionNum = question.value["questionNum"], let resOne = question.value["responseOne"], let resTwo = question.value["responseTwo"] {
 //                                        NavigationLink {
 //                                            RegistrationView(isAuthenticated: .constant(false))
 //                                                .navigationBarHidden(true)
@@ -37,7 +38,7 @@ struct QuestionsView: View {
 //                            //                    .padding([.top], 100)
 //                                        }
                                         NavigationLink {
-                                            QuestionAnswerView(questionText: text, questionNum: questionNum, responseOne: resOne, responseTwo: resTwo)
+                                            QuestionAnswerView(questionText: text, questionNum: questionNum)
                                                 .navigationBarHidden(true)
                                         } label: {
                                             QuestionRowView(questionText: text, questionNum: questionNum)
