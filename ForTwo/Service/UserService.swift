@@ -222,4 +222,33 @@ struct UserService {
                 }
             }
     }
+    
+    func updateResponse(newResponse: String, arrayNum: Int, coupleId: String, changeResponseOne: Bool) {
+        let db = Firestore.firestore()
+        if changeResponseOne {
+            db.collection("couples")
+                .document(coupleId)
+                .updateData([
+                    "questions[0]": [3]
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+        } else {
+            db.collection("couples")
+                .document(coupleId)
+                .updateData([
+                    "responseTwo": newResponse
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+        }
+    }
 }

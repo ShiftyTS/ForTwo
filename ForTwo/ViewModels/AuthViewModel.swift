@@ -15,7 +15,8 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var currentCouple: Couple?
     @Published var refreshCouple: Couple?
-    @Published var dataReloadTrigger = UUID()
+    @Published var questions: [[String: String]]?
+//    @Published var dataReloadTrigger = UUID()
     
     private let service = UserService()
     
@@ -122,6 +123,8 @@ class AuthViewModel: ObservableObject {
         service.fetchCouple(withCoupleId: coupleId) { couple in
             self.currentCouple = couple
         }
+        
+        fetchAllCoupleQuestions(coupleId: coupleId)
     }
     
     // uidOne is the current user's uid, uidTwo is the code they entered
@@ -165,5 +168,28 @@ class AuthViewModel: ObservableObject {
         service.fetchNewQuestion(currentQuestions: setQuestions, numQuestions: count, coupleId: coupleId)
         
         self.fetchCouple(coupleId: coupleId)
+    }
+    
+    func fetchAllCoupleQuestions(coupleId: String) {
+        let db = Firestore.firestore()
+        db.collection("couples")
+            .document(coupleId)
+            .addSnapshotListener { snapshot, error in
+                guard let document = snapshot, document.exists, let data = document.data() else {
+                    print("Error fetching document: \(error?.localizedDescription ?? "Unknown error")")
+                    return
+                }
+                
+                if let questions = data["questions"] as? [[String: String]] {
+                    self.questions = questions
+                }
+            }
+//
+//
+//        fetchCouple(coupleId: coupleId)
+    }
+    
+    func updateResponse(newResponse: String, arrayNum: Int, coupleId: String, changeResponseOne: Bool) {
+        service.updateResponse(newResponse: newResponse, arrayNum: arrayNum, coupleId: coupleId, changeResponseOne: changeResponseOne)
     }
 }

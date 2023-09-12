@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct QuestionsView: View {
     @EnvironmentObject var viewModel: AuthViewModel
-    @State var questionCounter: Int = 1
+//    @ObservedObject var questions
     
     var body: some View {
         NavigationView {
@@ -21,11 +22,11 @@ struct QuestionsView: View {
                 VStack{
                     ScrollView {
                         LazyVStack {
-                            if let user = viewModel.currentUser, let couple = viewModel.currentCouple {
+                            if let user = viewModel.currentUser, let couple = viewModel.currentCouple, let questions = viewModel.questions {
 //                                ForEach(couple.questions, id: \.self)
                                 //                            if var coupleQuestions = viewModel.currentCouple?.questions {
-                                ForEach(couple.questions.reversed(), id: \.self) { question in
-                                    if let text = question["questionText"] {
+                                ForEach(questions.reversed(), id: \.self) { question in
+                                    if let text = question["questionText"], let questionNum = question["questionNum"], let resOne = question["responseOne"], let resTwo = question["responseTwo"] {
 //                                        NavigationLink {
 //                                            RegistrationView(isAuthenticated: .constant(false))
 //                                                .navigationBarHidden(true)
@@ -36,10 +37,10 @@ struct QuestionsView: View {
 //                            //                    .padding([.top], 100)
 //                                        }
                                         NavigationLink {
-                                            QuestionAnswerView()
+                                            QuestionAnswerView(questionText: text, questionNum: questionNum, responseOne: resOne, responseTwo: resTwo)
                                                 .navigationBarHidden(true)
                                         } label: {
-                                            QuestionRowView(questionText: text, questionNum: question["questionNum"] ?? "")
+                                            QuestionRowView(questionText: text, questionNum: questionNum)
                                         }
 //                                        questionCounter += 1
                                     }

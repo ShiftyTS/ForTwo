@@ -45,22 +45,58 @@ struct HomeView: View {
     //                .border(.red)
                     
                     // People <3 People and together section (Hstack for the people <3 people, Vstack surrounding), button here to feed?
+                    if user.id == couple.uidOne {
+                        
+                    } else {
+                        
+                    }
                     VStack {
-                        // XXX <3 XXX
-                        HStack {
-                            Spacer()
-                            Text(couple.nicknameOne)
-                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
-                                .font(Font.custom("HermeneusOne-Regular", size: 17))
-                            Text("❤️")
-                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
-                                .font(Font.custom("HermeneusOne-Regular", size: 17))
-                            Text(couple.nicknameTwo)
-                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
-                                .font(Font.custom("HermeneusOne-Regular", size: 17))
+                        if user.id == couple.uidOne {
+                            HStack {
+                                Spacer()
+                                Text(couple.nicknameOne)
+                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
+                                Text("❤️")
+                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
+                                Text(couple.nicknameTwo)
+                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
+                            }
+        //                    .padding([.horizontal], 20)
+                            .padding([.top], 20)
+                        } else {
+                            HStack {
+                                Spacer()
+                                Text(couple.nicknameTwo)
+                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
+                                Text("❤️")
+                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
+                                Text(couple.nicknameOne)
+                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
+                            }
+        //                    .padding([.horizontal], 20)
+                            .padding([.top], 20)
                         }
-    //                    .padding([.horizontal], 20)
-                        .padding([.top], 20)
+                        // XXX <3 XXX
+//                        HStack {
+//                            Spacer()
+//                            Text(couple.nicknameOne)
+//                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+//                                .font(Font.custom("HermeneusOne-Regular", size: 17))
+//                            Text("❤️")
+//                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+//                                .font(Font.custom("HermeneusOne-Regular", size: 17))
+//                            Text(couple.nicknameTwo)
+//                                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+//                                .font(Font.custom("HermeneusOne-Regular", size: 17))
+//                        }
+//    //                    .padding([.horizontal], 20)
+//                        .padding([.top], 20)
     //                    .padding
                         
                         // Together for...
@@ -93,6 +129,7 @@ struct HomeView: View {
                                 Button(action: {
                                     if let coupleId = viewModel.currentCouple?.id {
                                         viewModel.fetchNewQuestion(coupleId: coupleId)
+                                        viewModel.fetchAllCoupleQuestions(coupleId: coupleId)
                                     } else {
                                         print("Failed to fetch")
                                     }

@@ -37,20 +37,51 @@ struct CoupleView: View {
                                 hideKeyboard()
                             }
                         VStack{
-                            HStack {
-                                //                        Spacer()
-                                Text(couple.nicknameOne)
-                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
-                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
-                                Text("❤️")
-                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
-                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
-                                Text(couple.nicknameTwo)
-                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
-                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
+                            if user.id == couple.uidOne {
+                                HStack {
+                                    //                        Spacer()
+                                    Text(couple.nicknameOne)
+                                        .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                        .font(Font.custom("HermeneusOne-Regular", size: 17))
+                                    Text("❤️")
+                                        .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                        .font(Font.custom("HermeneusOne-Regular", size: 17))
+                                    Text(couple.nicknameTwo)
+                                        .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                        .font(Font.custom("HermeneusOne-Regular", size: 17))
+                                }
+                                //                    .padding([.horizontal], 20)
+                                .padding([.top], 40)
+                            } else {
+                                HStack {
+                                    //                        Spacer()
+                                    Text(couple.nicknameTwo)
+                                        .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                        .font(Font.custom("HermeneusOne-Regular", size: 17))
+                                    Text("❤️")
+                                        .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                        .font(Font.custom("HermeneusOne-Regular", size: 17))
+                                    Text(couple.nicknameOne)
+                                        .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+                                        .font(Font.custom("HermeneusOne-Regular", size: 17))
+                                }
+                                //                    .padding([.horizontal], 20)
+                                .padding([.top], 40)
                             }
-                            //                    .padding([.horizontal], 20)
-                            .padding([.top], 40)
+//                            HStack {
+//                                //                        Spacer()
+//                                Text(couple.nicknameOne)
+//                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+//                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
+//                                Text("❤️")
+//                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+//                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
+//                                Text(couple.nicknameTwo)
+//                                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+//                                    .font(Font.custom("HermeneusOne-Regular", size: 17))
+//                            }
+//                            //                    .padding([.horizontal], 20)
+//                            .padding([.top], 40)
                             //                    .padding
                             
                             // Together for...

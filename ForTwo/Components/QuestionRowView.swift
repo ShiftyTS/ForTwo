@@ -13,25 +13,23 @@ struct QuestionRowView: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
-            Button(action: {}) {
-                Text("#\(String(questionNum))") // change to state variable
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .font(Font.custom("ZapfinoExtraLT-One", size: 32))
-                    .foregroundColor(Color(red: 0xFC / 255, green: 0x4C / 255, blue: 0x4E / 255))
+            Text("#\(String(questionNum))") // change to state variable
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .font(Font.custom("ZapfinoExtraLT-One", size: 32))
+                .foregroundColor(Color(red: 0xFC / 255, green: 0x4C / 255, blue: 0x4E / 255))
 //                    .background(Color.clear)
 //                    .foregroundColor(.black)
-                    .padding([.top], 7)
-                    .padding([.trailing], 2)
+                .padding([.top], 7)
+                .padding([.trailing], 2)
 //                    .border(.blue)
-                Text(questionText) // change to state variable
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .font(Font.custom("HermeneusOne-Regular", size: 18))
-                    .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
+            Text(questionText) // change to state variable
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .font(Font.custom("HermeneusOne-Regular", size: 18))
+                .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
 //                    .background(Color.clear)
 //                    .foregroundColor(.black)
 //                    .border(.blue)
-                Spacer()
-            }
+            Spacer()
 //            Text("#01")
 //                .textFieldStyle(RoundedBorderTextFieldStyle())
 //            Text("What was your first impression of your partner?")
