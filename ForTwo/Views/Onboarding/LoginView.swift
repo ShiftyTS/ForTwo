@@ -68,7 +68,7 @@ struct LoginView: View {
                         .disableAutocorrection(true)
                         .textInputAutocapitalization(.none)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 10)
+                            RoundedRectangle(cornerRadius: 20)
                                 .stroke(Color.gray, lineWidth: 0.5)
                         )
                                     
@@ -83,7 +83,7 @@ struct LoginView: View {
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.none)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 10)
+                            RoundedRectangle(cornerRadius: 20)
                                 .stroke(Color.gray, lineWidth: 0.5)
                         )
                     }.padding([.leading, .trailing], 27.5)

@@ -217,8 +217,8 @@ struct HomeView: View {
                                 .frame(width: geometry.size.width, height: geometry.size.height / 1.125)
                                 .cornerRadius(20)
     //                            .border()
-                            if (false) {  //if did not get new question
-                                Text("Nice to see you!\n\nA question is waiting for you  📪")
+                            if (true) {  //if did not get new question
+                                Text("Good day!\n\nA question is waiting for you  📪")
                                     .foregroundColor(Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255))
                                     .font(Font.custom("HermeneusOne-Regular", size: 20))
                                     .multilineTextAlignment(.center)

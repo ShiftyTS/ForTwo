@@ -129,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				1959DDF22AAF755D0054FB04 /* QuestionAnswerView.swift */,
-				195D8D1C2AAFA7DC0093ED7D /* EditAnswerView.swift */,
 			);
 			path = "Question Views";
 			sourceTree = "<group>";
@@ -169,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				19CA3A4B2AA0076200224212 /* ContentView.swift */,
+				195D8D1C2AAFA7DC0093ED7D /* EditAnswerView.swift */,
 				19CA3A762AA0268000224212 /* HomeView.swift */,
 				19CA3A782AA026A700224212 /* QuestionsView.swift */,
 				19CA3A7A2AA0270F00224212 /* MemoriesView.swift */,
@@ -596,6 +596,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForTwo/Preview Content\"";
+				DEVELOPMENT_TEAM = 3NTWA7C5NX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForTwo/Info.plist;
@@ -603,6 +604,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -625,6 +627,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForTwo/Preview Content\"";
+				DEVELOPMENT_TEAM = 3NTWA7C5NX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForTwo/Info.plist;
@@ -632,6 +635,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
