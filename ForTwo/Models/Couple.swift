@@ -7,19 +7,13 @@
 
 import FirebaseFirestoreSwift
 
-//struct Question: Codable {
-//  let questionText: String
-//  let responseOne: String
-//  let responseTwo: String
-//}
-
+// Couple model
 struct Couple: Identifiable, Decodable {
     @DocumentID var id: String?
     let daysTogether: Int
     let nicknameOne: String
     let nicknameTwo: String
     let questions: [String: [String: String]]
-//    let questions: [[String: String]]  // [String: [String: String]]
     let uidOne: String
     let uidTwo: String
 }

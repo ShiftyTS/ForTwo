@@ -8,65 +8,46 @@
 import SwiftUI
 import Firebase
 
+// Displays questions tab
 struct QuestionsView: View {
     @EnvironmentObject var viewModel: AuthViewModel
-//    @ObservedObject var questions
-    
+
     var body: some View {
         NavigationView {
             ZStack {
                 Image("background")
                     .resizable()
-        //                .scaledToFill()
                     .ignoresSafeArea()
                 VStack{
                     ScrollView {
                         LazyVStack {
                             if let user = viewModel.currentUser, let couple = viewModel.currentCouple, let questions = viewModel.questions {
-//                                ForEach(couple.questions, id: \.self)
-                                //                            if var coupleQuestions = viewModel.currentCouple?.questions {
-                                ForEach(questions.keys.sorted(by: >), id: \.self) { questionKey in
+                                
+                                // Iterates through and displays all of the given couple's questios
+                                ForEach(questions.keys.sorted{
+                                    $0.compare($1, options: .numeric) == .orderedDescending
+                                }, id: \.self) { questionKey in
                                     if let questionValue = questions[questionKey], let text = questionValue["questionText"], let questionNum = questionValue["questionNum"] {
-//                                    if let text = question.value["questionText"], let questionNum = question.value["questionNum"], let resOne = question.value["responseOne"], let resTwo = question.value["responseTwo"] {
-//                                        NavigationLink {
-//                                            RegistrationView(isAuthenticated: .constant(false))
-//                                                .navigationBarHidden(true)
-//                                        } label: {
-//                                                Text("Don't have an account? Sign Up")
-//                                                .font(.headline)
-//                                                .foregroundColor(.black)
-//                            //                    .padding([.top], 100)
-//                                        }
+
+                                        // Displays individual question
                                         NavigationLink {
                                             QuestionAnswerView(questionText: text, questionNum: questionNum)
                                                 .navigationBarHidden(true)
                                         } label: {
                                             QuestionRowView(questionText: text, questionNum: questionNum)
                                         }
-//                                        questionCounter += 1
                                     }
-//                                    self.questionCounter += 1
                                 }
-                            
-                                //                            ForEach(viewModel.)
                             }
-                            
-//                            ForEach(0 ... 20, id: \.self) { _ in
-//                                NavigationLink {
-////                                    QuestionRowView() // ?
-//                                } label: {
-//                                    QuestionRowView(questionText: "text", questionNum: questionCounter)
-//                                }
-//                            }
                         }
                     }
                 }
             }
-//            .navigationTitle(Text("List")
-//                                .font(Font.custom("ZapfinoExtraLT-One", size: 32)))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
+                    
+                    // Header
                     Text("List")
                         .font(Font.custom("ZapfinoExtraLT-One", size: 44))
                 }
@@ -74,17 +55,3 @@ struct QuestionsView: View {
         }
     }
 }
-
-struct QuestionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        QuestionsView()
-            .environmentObject(AuthViewModel())
-    }
-}
-
-
-
-// List of questions, each question is clickable and when clicked it shows the
-// responses/if the parter has not responded and comment section if time
-
-// Fetching the responses

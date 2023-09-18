@@ -7,14 +7,16 @@
 
 import SwiftUI
 
+// View for viewing the couple's question answers
 struct QuestionAnswerView: View {
+    
     @State var questionText: String
     @State var questionNum: String
-//    @State var responseOne: String
-//    @State var responseTwo: String
+
     @State private var isEditing = false
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
+    
     
     var body: some View {
         if let user = viewModel.currentUser, let couple = viewModel.currentCouple, let questions = viewModel.questions {
@@ -25,14 +27,14 @@ struct QuestionAnswerView: View {
                             .resizable()
                             .ignoresSafeArea()
                         VStack {
-                            HStack { ///AJUIKDBWDBHAIUWDB  -> Implement the edit answer view functionality and view
+                            HStack {
+                                
+                                // Edit icon to edit the user's question response
                                 NavigationLink {
                                     if let innerMap = questions[questionNum], let resOne = innerMap["responseOne"], let resTwo = innerMap["responseTwo"] {
                                         EditAnswerView(questionText: questionText, questionNum: questionNum, responseOne: resOne, responseTwo: resTwo)
                                             .navigationBarHidden(true)
                                     }
-//                                    EditAnswerView(questionText: questionText, questionNum: questionNum, responseOne: couple.questions[questionNum]["responseOne"], responseTwo: couple.questions[questionNum]["responseOne"])
-//                                        .navigationBarHidden(true)
                                 } label: {
                                     HStack {
                                         Image("pencilicon")
@@ -40,20 +42,11 @@ struct QuestionAnswerView: View {
                                             .scaledToFit()
                                             .scaleEffect(0.5)
                                     }
-                    //                    .padding([.top], 100)
                                 }
-//                                Button(action: {
-//
-//                                }) {
-//                                    HStack {
-//                                        Image("pencilicon")
-//                                            .resizable()
-//                                            .scaledToFit()
-//                                            .scaleEffect(0.5)
-//                                    }
-//                                }
-                                
+
                                 Spacer()
+                                
+                                // Exit the question
                                 Button(action: {
                                     presentationMode.wrappedValue.dismiss()
                                 }) {
@@ -66,140 +59,128 @@ struct QuestionAnswerView: View {
                                 }
                             }
                             .frame(width: geometry.size.width, height: geometry.size.height / 12)
-                            //                        .border(.red)
+                            
+                            // Displays the question details and the couple's responses
                             ScrollView {
                                 VStack {
-                                    // Question text
                                     VStack {
+                                        
+                                        // Question text
                                         HStack {
                                             Text(questionText)
                                                 .font(Font.custom("HermeneusOne-Regular", size: 20))
                                                 .frame(width: geometry.size.width * 0.7, alignment: .leading)
-//                                                .border(.red)
                                         }
                                         .padding([.bottom], 5)
                                         
-                                        //                                    Text("Question #" + questionNum)
-                                        //                                        .frame(alignment: .trailing)
-                                        //                                        .border(.red)
-                                        //                                        .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                        //
-                                        // Question # and date last updated?
                                         Spacer()
+                                        
+                                        // Question number
                                         HStack {
-                                            Text("Question #" + questionNum + "     Apr 16. 2023")
+                                            Text("Question #" + questionNum + "     Sept 16. 2023")
                                                 .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                 .foregroundColor(Color(red: 0xa9 / 255, green: 0xa9 / 255, blue: 0xa9 / 255))
                                                 .frame(width: geometry.size.width * 0.7, alignment: .leading)
-//                                                .border(.red)
                                         }
                                     }
                                     .frame(width: geometry.size.width * 0.85, alignment: .leading)
-//                                    .border(.blue)
                                     
                                     Spacer()
                                     
+                                    // Display current user's response on top
                                     if user.id == couple.uidOne {
+                                        
+                                        // User one's response
                                         VStack {
-                                            // Name1
+                                            
                                             Spacer()
+                                            
+                                            // Nickname
                                             Text(couple.nicknameOne)
                                                 .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                 .frame(width: geometry.size.width * 0.85, alignment: .leading)
-    //                                            .border(.red)
                                                 .padding([.vertical], 4)
-    //                                        Spacer()
+                                            
+                                            // Response
                                             if let innerMap = questions[questionNum], let resOne = innerMap["responseOne"] {
                                                 Text(resOne)
                                                     .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                     .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
                                                     .frame(width: geometry.size.width * 0.85, alignment: .leading)
                                             }
-    //                                            .border(.red)
                                         }
                                         .padding([.bottom], geometry.size.height / 40)
                                         
+                                        // User two's response
                                         VStack {
-                                            // Name1
+                                            
                                             Spacer()
+                                            
+                                            // Nickname
                                             Text(couple.nicknameTwo)
                                                 .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                 .frame(width: geometry.size.width * 0.85, alignment: .leading)
-    //                                            .border(.red)
                                                 .padding([.vertical], 4)
-    //                                        Spacer()
+                                            
+                                            // Response
                                             if let innerMap = questions[questionNum], let resTwo = innerMap["responseTwo"] {
                                                 Text(resTwo)
                                                     .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                     .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
                                                     .frame(width: geometry.size.width * 0.85, alignment: .leading)
                                             }
-    //                                            .border(.red)
                                         }
                                     } else {
+                                        
+                                        // User two's Response
                                         VStack {
-                                            // Name1
+                                            
                                             Spacer()
+                                            
+                                            // Nickname
                                             Text(couple.nicknameTwo)
                                                 .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                 .frame(width: geometry.size.width * 0.85, alignment: .leading)
-    //                                            .border(.red)
                                                 .padding([.vertical], 4)
-    //                                        Spacer()
+                                            
+                                            // Response
                                             if let innerMap = questions[questionNum], let resTwo = innerMap["responseTwo"] {
                                                 Text(resTwo)
                                                     .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                     .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
                                                     .frame(width: geometry.size.width * 0.85, alignment: .leading)
                                             }
-    //                                            .border(.red)
                                         }
                                         .padding([.bottom], geometry.size.height / 40)
                                         
+                                        // User one's response
                                         VStack {
-                                            // Name1
+                                            
                                             Spacer()
+                                            
+                                            // Nickname
                                             Text(couple.nicknameOne)
                                                 .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                 .frame(width: geometry.size.width * 0.85, alignment: .leading)
-    //                                            .border(.red)
                                                 .padding([.vertical], 4)
-    //                                        Spacer()
+                                            
+                                            // Response
                                             if let innerMap = questions[questionNum], let resOne = innerMap["responseOne"] {
                                                 Text(resOne)
                                                     .font(Font.custom("HermeneusOne-Regular", size: 16))
                                                     .foregroundColor(Color(red: 0x54 / 255, green: 0x54 / 255, blue: 0x54 / 255))
                                                     .frame(width: geometry.size.width * 0.85, alignment: .leading)
-                                                //                                            .border(.red)
                                             }
                                         }
                                     }
-                                    
-                                    
-//
                                 }
-//                                .border(.red)
                             }
                             .frame(width: geometry.size.width * 0.85)
-//                            .border(.red)
-                            
-                            HStack {
-
-                            }
-//                            .border(.green)
-                            .frame(width: geometry.size.width, height: geometry.size.height / 12)
                         }
-                        //                    .border(.red)
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    //                HStack {
-                    //                    ToolbarItem(placement: .principal) {
-                    //                        Text("List")
-                    //                            .font(Font.custom("ZapfinoExtraLT-One", size: 44))
-                    //                    }
-                    //                }
                     ToolbarItem(placement: .principal) {
                         Text("ForTwo")
                             .font(Font.custom("ZapfinoExtraLT-One", size: 44))
@@ -207,28 +188,5 @@ struct QuestionAnswerView: View {
                 }
             }
         }
-        
-//        VStack {
-//            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-//
-//            Button(action: {
-//                presentationMode.wrappedValue.dismiss()
-//            }) {
-//                HStack {
-//                    Image("backicon")
-//                        .resizable()
-//                        .scaledToFit()
-//                                    .scaleEffect(0.1)
-//                }
-//            }
-//            .padding()
-//        }
-    }
-}
-
-struct QuestionAnswerView_Previews: PreviewProvider {
-    static var previews: some View {
-        QuestionAnswerView(questionText: "On days with weather like today, what do you feel like cooking/eating together?", questionNum: "13")
-            .environmentObject(AuthViewModel())
     }
 }

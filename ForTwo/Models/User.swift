@@ -7,6 +7,7 @@
 
 import FirebaseFirestoreSwift
 
+// User model
 struct User: Identifiable, Decodable {
     @DocumentID var id: String?
     let connected: Bool
