@@ -23,8 +23,8 @@
 		19BAF4F82AB81DD2001A9BF8 /* QuestionsView.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BAF4EF2AB81DD1001A9BF8 /* QuestionsView.png */; };
 		19BAF4F92AB81DD2001A9BF8 /* Register.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BAF4F02AB81DD2001A9BF8 /* Register.png */; };
 		19BAF4FA2AB81DD2001A9BF8 /* UnconnectedView.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BAF4F12AB81DD2001A9BF8 /* UnconnectedView.png */; };
-		19BAF4FB2AB81DD2001A9BF8 /* Login.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BAF4F22AB81DD2001A9BF8 /* Login.png */; };
 		19BAF4FC2AB81DD2001A9BF8 /* QuestionAnswer.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BAF4F32AB81DD2001A9BF8 /* QuestionAnswer.png */; };
+		19BAF4FE2AB82063001A9BF8 /* Login.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BAF4FD2AB82063001A9BF8 /* Login.png */; };
 		19BD91A42AA291EA008B5F4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19BD91A32AA291EA008B5F4E /* GoogleService-Info.plist */; };
 		19BD91A72AA29D3C008B5F4E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD91A62AA29D3C008B5F4E /* LoginView.swift */; };
 		19BD91A92AA29D49008B5F4E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD91A82AA29D49008B5F4E /* RegistrationView.swift */; };
@@ -59,8 +59,8 @@
 		19BAF4EF2AB81DD1001A9BF8 /* QuestionsView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QuestionsView.png; sourceTree = "<group>"; };
 		19BAF4F02AB81DD2001A9BF8 /* Register.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Register.png; sourceTree = "<group>"; };
 		19BAF4F12AB81DD2001A9BF8 /* UnconnectedView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UnconnectedView.png; sourceTree = "<group>"; };
-		19BAF4F22AB81DD2001A9BF8 /* Login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Login.png; sourceTree = "<group>"; };
 		19BAF4F32AB81DD2001A9BF8 /* QuestionAnswer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QuestionAnswer.png; sourceTree = "<group>"; };
+		19BAF4FD2AB82063001A9BF8 /* Login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Login.png; path = "../../../../ForTwo SS/Login.png"; sourceTree = "<group>"; };
 		19BD91A32AA291EA008B5F4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		19BD91A62AA29D3C008B5F4E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		19BD91A82AA29D49008B5F4E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -127,11 +127,11 @@
 		19BAF4EA2AB81DC6001A9BF8 /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
+				19BAF4FD2AB82063001A9BF8 /* Login.png */,
 				19BAF4EE2AB81DD1001A9BF8 /* CoupleView.png */,
 				19BAF4EB2AB81DD1001A9BF8 /* EditAnswer.png */,
 				19BAF4EC2AB81DD1001A9BF8 /* ForgotPassword.png */,
 				19BAF4ED2AB81DD1001A9BF8 /* HomeView.png */,
-				19BAF4F22AB81DD2001A9BF8 /* Login.png */,
 				19BAF4F32AB81DD2001A9BF8 /* QuestionAnswer.png */,
 				19BAF4EF2AB81DD1001A9BF8 /* QuestionsView.png */,
 				19BAF4F02AB81DD2001A9BF8 /* Register.png */,
@@ -323,7 +323,6 @@
 			files = (
 				19BAF4F52AB81DD2001A9BF8 /* ForgotPassword.png in Resources */,
 				19BAF4FC2AB81DD2001A9BF8 /* QuestionAnswer.png in Resources */,
-				19BAF4FB2AB81DD2001A9BF8 /* Login.png in Resources */,
 				19019FE42AA6AC7E00B2FEC1 /* HermeneusOne-Regular.ttf in Resources */,
 				19019FE72AA6B1F500B2FEC1 /* ZapfinoExtraLT-One.otf in Resources */,
 				19BAF4F62AB81DD2001A9BF8 /* HomeView.png in Resources */,
@@ -331,6 +330,7 @@
 				19BAF4F72AB81DD2001A9BF8 /* CoupleView.png in Resources */,
 				19BAF4F92AB81DD2001A9BF8 /* Register.png in Resources */,
 				19BAF4F42AB81DD2001A9BF8 /* EditAnswer.png in Resources */,
+				19BAF4FE2AB82063001A9BF8 /* Login.png in Resources */,
 				19CA3A4E2AA0076300224212 /* Assets.xcassets in Resources */,
 				19BAF4F82AB81DD2001A9BF8 /* QuestionsView.png in Resources */,
 				19BD91A42AA291EA008B5F4E /* GoogleService-Info.plist in Resources */,
