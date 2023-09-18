@@ -12,10 +12,10 @@ ForTwo is an iOS Swift and Firebase-powered app designed to bring couples closer
 
 ## Screenshots
 
-![Login](/ForTwo/Screenshots/Login.png){: width="300" height="649"}  ![Register](/ForTwo/Screenshots/Register.png){: width="300" height="649"} 
-![Home](/ForTwo/Screenshots/HomeView.png){: width="300" height="649"} 
-![Questions](/ForTwo/Screenshots/QuestionsView.png){: width="300" height="649"}   ![QuestionAnswer](/ForTwo/Screenshots/QuestionAnswer.png){: width="300" height="649"}   ![AnswerEdit](/ForTwo/Screenshots/EditAnswer.png){: width="300" height="649"} 
-![Settings](/ForTwo/Screenshots/CoupleView.png){: width="300" height="649"}   ![Unconnected](/ForTwo/Screenshots/UnconnectedView.png){: width="300" height="649"} 
+<img src="/ForTwo/Screenshots/Login.png" width="400" height="866" /> <img src="/ForTwo/Screenshots/Register.png" width="400" height="866" />
+<img src="/ForTwo/Screenshots/HomeView.png" width="400" height="866" />
+<img src="/ForTwo/Screenshots/QuestionsView.png" width="400" height="866" /> <img src="/ForTwo/Screenshots/QuestionAnswer.png" width="400" height="866" /> <img src="/ForTwo/Screenshots/EditAnswer.png" width="400" height="866" />
+<img src="/ForTwo/Screenshots/CoupleView.png" width="400" height="866" /> <img src="/ForTwo/Screenshots/UnconnectedView.png" width="400" height="866" />
 
 ## Getting Started
 
