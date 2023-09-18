@@ -88,4 +88,4 @@ If you have any questions or suggestions, feel free to reach out at [shentao2004
 
 ---
 
-Make everyday special for you and your partner with ForTwo! ❤️
+Make everyday special for you and your partner with ForTwo!
