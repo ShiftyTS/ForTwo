@@ -12,10 +12,7 @@ ForTwo is an iOS Swift and Firebase-powered app designed to bring couples closer
 
 ## Screenshots
 
-![Login](/ForTwo/Screenshots/Login.png){: width="300" height="649"} ![Register](/ForTwo/Screenshots/Register.png) ![ForgotPassword](/ForTwo/Screenshots/ForgotPassword.png)
-![Home](/ForTwo/Screenshots/HomeView.png)
-![Questions](/ForTwo/Screenshots/QuestionsView.png) ![QuestionAnswer](/ForTwo/Screenshots/QuestionAnswer.png) ![AnswerEdit](/ForTwo/Screenshots/EditAnswer.png)
-![Settings](/ForTwo/Screenshots/CoupleView.png) ![Unconnected](/ForTwo/Screenshots/UnconnectedView.png)
+<img src="/ForTwo/Screenshots/Login.png" width="300" height="649">
 
 ## Getting Started
 
