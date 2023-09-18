@@ -31,7 +31,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
 
-        overrideUserInterfaceStyle = .dark
+//        overrideUserInterfaceStyle = .dark
 
         FirebaseApp.configure()
         return true
