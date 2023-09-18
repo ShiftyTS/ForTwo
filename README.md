@@ -57,7 +57,6 @@ Before you begin, ensure you have met the following requirements:
 5. Configure Firebase:
 
    - Add your Firebase configuration files to the project as instructed by Firebase documentation.
-   - Update the Firebase configuration in the `AppDelegate.swift` file.
 
 6. Build and run the app in Xcode.
 
