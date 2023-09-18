@@ -11,8 +11,10 @@ import FirebaseFirestoreSwift
 
 struct UserService {
 
+    // Fetches user
     func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
-        print("awtvyudbahsduijabndijanwsdjoandjon")
+        
+        // Grabs data from firestore using the given uid
         Firestore.firestore().collection("users")
             .document(uid)
             .getDocument { snapshot, _ in
@@ -21,64 +23,43 @@ struct UserService {
                 guard let user = try? snapshot.data(as: User.self) else { return }
                 
                 completion(user)
-//                print("Email: \(user.email)")
-//                print("Nickname: \(user.nickname)")
-//                print("id: \(user.id)")
-//                print("Connected: \(user.connected)")
-//                print("CoupleID: \(user.coupleId)")
             }
-        print("after")
     }
     
+    // Fetches couple
     func fetchCouple(withCoupleId coupleId: String, completion: @escaping(Couple) -> Void) {
-        print("couples")
+        
+        // Grabs data from firestore using the given coupleId
         Firestore.firestore().collection("couples")
             .document(coupleId)
             .getDocument { snapshot, _ in
                 guard let snapshot = snapshot else {
-                    print("094587")
+                    print("Fail")
                     return
                     
                 }
                 
                 guard let couple = try? snapshot.data(as: Couple.self) else {
-                    print("745897")
+                    print("Fail")
                     return
                     
                 }
                 
                 completion(couple)
-//                print("Email: \(user.email)")
-                print("Nickname: \(couple.nicknameOne)")
-//                print("test \(couple.questions["question1"])")
-//                print("id: \(user.id)")
-//                print("Connected: \(user.connected)")
-//                print("CoupleID: \(user.coupleId)")
             }
-        print("after")
     }
     
+    // Connects couple
     func connectUserOffUid(withUid uid: String, curUserUid: String?) {
-        print("offuid")
-//        print(curUserNickname)
-//        print(curUserUid)
         let db = Firestore.firestore()
+        
+        // Grabs  other user's information
         db.collection("users")
             .document(uid)
             .getDocument { (document, error) in
                 if let document = document, document.exists {
-//                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-//                            print("Document data: \(dataDescription)")
-//                    let emailTwo = document.get("email")
-                    
-                    
-                    
-                    
                     let uidTwo = document.get("uid")
                     let nicknameTwo = document.get("nickname")
-                    let question =
-                    print("before123")
-//                    print(currentUser?.id)
                     let userInfo: [String: Any] = [
                         "uidOne": curUserUid,
                         "uidTwo": uidTwo,
@@ -86,35 +67,23 @@ struct UserService {
                         "nicknameTwo": "DefaultName",
                         "daysTogether": 1,
                         "questions": [:]
-//                        "questions": [
-//                            "questionText": "What movie do you want to watch with your partner?",
-//                            "responseOne": "",
-//                            "responseTwo": ""
-//                        ]
                     ]
-                    
-                    
-//                    let userInfo = ["test": "dwad"]
-//                    guard let user = try? snapshot.data(as: User.self) else { return }
                     
                     guard let stringCurUid = try? curUserUid as? String else { return }
                     guard let stringUidTwo = try? uidTwo as? String else { return }
                     let combinedUid = stringCurUid + stringUidTwo
-//                    print(combinedUid)
-//                    guard let combinedUid = try?
-                    // Forms new couple with the given uids
+                    
+                    // Creates a new couple using grabbed data
                     db.collection("couples")
                         .document(combinedUid)
                         .setData(userInfo) { _ in
                             print("DEBUG: Upload couple data")
-        //                    self.didAuthenticateUser = true
                         }
-                    
-                    
                     
                     let userOne = db.collection("users").document(stringCurUid)
                     let userTwo = db.collection("users").document(stringUidTwo)
                     
+                    // Updates user one data to be connected
                     userOne.updateData([
                         "coupleId": combinedUid,
                         "connected": true,
@@ -127,6 +96,7 @@ struct UserService {
                         }
                     }
                     
+                    // Updates user two data to be connected
                     userTwo.updateData([
                         "coupleId": combinedUid,
                         "connected": true
@@ -137,20 +107,20 @@ struct UserService {
                             print("Document successfully updated")
                         }
                     }
-                    
-                    print("after123")
-
                 } else {
                     print("User with given Uid does not exist!")
                 }
             }
-        print("afteroffuid")
     }
     
+    // Changes nickname
     func changeNickname(newNickname: String, coupleUid: String, changeNicknameOne: Bool) {
-        print("Start")
         let db = Firestore.firestore()
+        
+        // Changes appropriate nickname
         if changeNicknameOne {
+            
+            // Updates nickname one
             db.collection("couples")
                 .document(coupleUid)
                 .updateData([
@@ -163,6 +133,8 @@ struct UserService {
                     }
                 }
         } else {
+            
+            // Updates nickname two
             db.collection("couples")
                 .document(coupleUid)
                 .updateData([
@@ -175,34 +147,29 @@ struct UserService {
                     }
                 }
         }
-//        db.collection("couples")
-//            .document(coupleUid)
-//            .updateData([
-//                ""// hgow to know nickname one vs nicknametwo? // change the user nickname, then set nikcnameone to
-//            ])
-        print("at change")
     }
     
+    // Fetches new question
     func fetchNewQuestion(currentQuestions: NSMutableOrderedSet, numQuestions: Int, coupleId: String) {
-        print("fetchingnewquestion")
         let db = Firestore.firestore()
+        
+        // Enter question bank collection
         db.collection("allQuestions")
             .document("questions")
             .getDocument() { (document, error) in
                 if let document = document, document.exists {
                     if let dataDescription = document.data(), var questionsArray = dataDescription["questionTexts"] as? [String] {
-                        questionsArray.shuffle()
-//                        let arrayLength = dataArray.count
                         
+                        // Shuffles questions to get random one
+                        questionsArray.shuffle()
+                        
+                        // Iterates through the couple's existing questions and repeatedly trys to add question from bank to map
                         for question in questionsArray {
-//                            print(question)
-//                            print(numQuestions)
-//                            print(currentQuestions.count)
                             currentQuestions.add(question)
-//                            print(currentQuestions.count)
                             let newCount = currentQuestions.count
                             if newCount != numQuestions {
-                                print("rock")
+                                
+                                // Updates couple's questions
                                 db.collection("couples")
                                     .document(coupleId)
                                     .updateData([
@@ -221,9 +188,14 @@ struct UserService {
             }
     }
     
+    // Updates question response
     func updateResponse(newResponse: String, mapNum: Int, coupleId: String, changeResponseOne: Bool) {
         let db = Firestore.firestore()
+        
+        // Changes appropriate user's response
         if changeResponseOne {
+            
+            // Updates data in couples collection
             db.collection("couples")
                 .document(coupleId)
                 .updateData([
@@ -236,6 +208,8 @@ struct UserService {
                     }
                 }
         } else {
+            
+            // Updates data in couples collection
             db.collection("couples")
                 .document(coupleId)
                 .updateData([
@@ -248,27 +222,10 @@ struct UserService {
                     }
                 }
         }
-        
-//        guard let couple = try? snapshot.data(as: Couple.self) else {
-//            print("745897")
-//            return
-//
-//        }
-//
-//        completion(couple)
-//        fetchCouple(withCoupleId: , completion: <#T##(Couple) -> Void#>)
     }
     
+    // Disconnectes couple
     func disconnectCouple() {
         
     }
 }
-
-
-
-//                                        "questions": FieldValue.arrayUnion([
-//                                            ["questionText": question,
-//                                             "questionNum": String(newCount),
-//                                             "responseOne": "",
-//                                             "responseTwo": ""]
-//                                        ])

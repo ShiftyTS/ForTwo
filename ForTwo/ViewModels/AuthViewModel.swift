@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 import SwiftUI
 
+// Authentication viewmodel
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var didAuthenticateUser = false
@@ -16,23 +17,19 @@ class AuthViewModel: ObservableObject {
     @Published var currentCouple: Couple?
     @Published var refreshCouple: Couple?
     @Published var questions: [String: [String: String]]?
-//    @Published var dataReloadTrigger = UUID()
     
     private let service = UserService()
     
+    // Runs on initialization
     init() {
         self.userSession = Auth.auth().currentUser
         self.fetchUser()
-//        self.fetchCouple()
-//        if currentUser?.connected {
-//            self.fetchCouple(coupleId: currentUser?.coupleId)
-//        }
-//        print("DEBUG: User session is \(self.userSession?.uid)")
     }
     
+    // Registers user
     func register(userEmail: String, userPassword: String) {
-        print("DEBUG: Register \(userEmail)")
         
+        // Creates new user
         Auth.auth().createUser(withEmail: userEmail, password: userPassword) { result, error in
             if let error = error {
                 print("\(error.localizedDescription)")
@@ -40,61 +37,64 @@ class AuthViewModel: ObservableObject {
             }
             
             guard let user = result?.user else { return }
+            
+            // Updates user session
             self.userSession = user
             self.fetchUser()
+            
             print("DEBUG: Registered new user \(self.userSession)")
             
             let userInfo = ["email": userEmail, "uid": user.uid, "nickname": "Nickname", "connected": false, "coupleId": "", "enteredCode" : false]
             
+            // Adds new user to firestore collection
             Firestore.firestore().collection("users")
                 .document(user.uid)
                 .setData(userInfo) { _ in
                     print("DEBUG: Upload user data")
-//                    self.didAuthenticateUser = true
                 }
         }
-        
-//        self.fetchUser()
     }
     
-    // also make it show for login so if after registering the person closes app and reopens somehwere else and logs in they still see that connectionview
+    // Signs in user
     func login(userEmail: String, userPassword: String) {
-//        print("DEBUG: Login \(userEmail)")
+        
+        // Signs user in
         Auth.auth().signIn(withEmail: userEmail, password: userPassword) { result, error in
             if let error = error {
                 print("\(error.localizedDescription)")
                 return
             }
             guard let user = result?.user else { return }
+            
+            // Updates user session
             self.userSession = user
             self.fetchUser()
+            
             print("User logged in")
         }
-        
-//        self.fetchUser()
-//        self.currentUser
     }
     
+    // Signs out user
     func signOut() {
-        // Sest user session to nil, shows login view
+        
+        // Updates user session
         userSession = nil
-//        currentUser = nil
-//        currentCouple = nil
         currentCouple = refreshCouple
-        // Signs user out on backend/server
+        
+        // Signs out
         try? Auth.auth().signOut()
     }
     
+    // Disconnects couple
     func disconnectCouple() {
-        // Sest user session to nil, shows login view
-//        currentUser = nil
-//        currentCouple = nil
         service.disconnectCouple()
-        
         currentCouple = refreshCouple
     }
     
+    // Recovers password
     func recoverPassword(userEmail: String) {
+        
+        // Sends out password recovery email
         Auth.auth().sendPasswordReset(withEmail: userEmail) { error in
             if let error = error {
                 print("\(error.localizedDescription)")
@@ -103,6 +103,7 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    // Fetches user
     func fetchUser() {
         print("here")
         guard let uid = self.userSession?.uid else { return }
@@ -112,73 +113,63 @@ class AuthViewModel: ObservableObject {
             
             let coupleId = user.coupleId
             
+            // Fetches updated couple as well if the user is already connected
             if user.connected {
-                print("abc")
                 self.fetchCouple(coupleId: coupleId)
             }
-//            self.fetchCouple(coupleId: coupleId)
         }
     }
     
+    // Fetches couple
     func fetchCouple(coupleId: String) {
-        print("fetchcouplefirst")
-//        guard let coupleId = currentUser?.coupleId else {
-//            print("returdawdwadawdn")
-//            return
-//
-//        }
-        print(coupleId)  //gopt couple id!
-//        let coupleId = "ttt"
         service.fetchCouple(withCoupleId: coupleId) { couple in
             self.currentCouple = couple
         }
         
+        // Updates questions
         fetchAllCoupleQuestions(coupleId: coupleId)
     }
     
-    // uidOne is the current user's uid, uidTwo is the code they entered
+    // Connects couple
     func connectCouple(uidPartner: String) {
-        print("connectprints")
-        
         service.connectUserOffUid(withUid: uidPartner, curUserUid: self.userSession?.uid)
         
+        // Updates user
         self.fetchUser()
-//        self.fetchNewQuestion(coupleId: self.userSession?.uid ?? "" + uidPartner)
-//        self.fetchUser()
     }
     
+    // Changes user nickname
     func changeNickname(newNickname: String, coupleUid: String, changeNicknameOne: Bool) {
-        print("changenick")
-        print(coupleUid)
-        
         service.changeNickname(newNickname: newNickname, coupleUid: coupleUid, changeNicknameOne: changeNicknameOne)
         
+        // Updates user
         self.fetchUser()
     }
     
+    // Fetches a new question from question bank
     func fetchNewQuestion(coupleId: String) {
         var questionTexts: [String] = []
         let questions = currentCouple?.questions ?? [:]
+        
+        // Creates dictionary of questions based on existing questions
         for question in questions {
             if let text = question.value["questionText"] {
                 questionTexts.append(text)
             } else {
                 print("error")
             }
-//            print(question["questionText"])
         }
         
         var setQuestions = NSMutableOrderedSet(array: questionTexts)
         let count = setQuestions.count
-        print(setQuestions)
-//        print(questionTexts)
-//        print(questions)
-//        for question in
+
         service.fetchNewQuestion(currentQuestions: setQuestions, numQuestions: count, coupleId: coupleId)
         
+        // Updates couple
         self.fetchCouple(coupleId: coupleId)
     }
     
+    // Fetches all of the couple's questions
     func fetchAllCoupleQuestions(coupleId: String) {
         let db = Firestore.firestore()
         db.collection("couples")
@@ -190,23 +181,18 @@ class AuthViewModel: ObservableObject {
                 }
                 
                 if let questions = data["questions"] as? [String: [String: String]] {
+                    
+                    // Updates questions
                     self.questions = questions
                 }
             }
-//
-//
-//        fetchCouple(coupleId: coupleId)
     }
     
+    // Updates question response
     func updateResponse(newResponse: String, mapNum: Int, coupleId: String, changeResponseOne: Bool) {
         service.updateResponse(newResponse: newResponse, mapNum: mapNum, coupleId: coupleId, changeResponseOne: changeResponseOne)
-        
-//        fetchCouple(coupleId: coupleId)
-//        { couple in
-//            self.currentCouple = couple
-//        }
+
+        // Updates couple
         self.fetchCouple(coupleId: coupleId)
-//        self.fetchAllCoupleQuestions(coupleId: coupleId)
-//        fetchAllCoupleQuestions(coupleId: coupleId)
     }
 }
